@@ -1,0 +1,73 @@
+@charset "UTF-8";
+
+BODY {
+	FONT-SIZE: 9pt;
+	COLOR: black;
+	LINE-HEIGHT: 160%;
+}
+
+main {
+	width: 80%;
+	margin: 0 auto;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-content: center;
+}
+
+TD {
+	FONT-SIZE: 9pt;
+	COLOR: black;
+	LINE-HEIGHT: 160%;
+}
+
+SELECT {
+	FONT-SIZE: 9pt;
+	COLOR: black;
+	LINE-HEIGHT: 160%;
+}
+
+DIV {
+	FONT-SIZE: 9pt;
+	COLOR: black;
+	LINE-HEIGHT: 160%;
+}
+
+FORM {
+	FONT-SIZE: 9pt;
+	COLOR: black;
+	LINE-HEIGHT: 160%;
+}
+
+TEXTAREA {
+	BORDER-RIGHT: 1px solid #999999;
+	BORDER-TOP: 1px solid #999999;
+	FONT-SIZE: 9pt;
+	BORDER-LEFT: 1px solid #999999;
+	COLOR: BLACK;
+	BORDER-BOTTOM: 1px solid #999999;
+	BACKGROUND-COLOR: white
+}
+
+INPUT {
+	BORDER-RIGHT: 1px solid #999999;
+	BORDER-TOP: 1px solid #999999;
+	FONT-SIZE: 9pt;
+	BORDER-LEFT: 1px solid #999999;
+	COLOR: BLACK;
+	BORDER-BOTTOM: 1px solid #999999;
+	BACKGROUND-COLOR: white
+}
+
+A:link {
+	text-decoration: #696969
+}
+
+A:hover {
+	text-decoration: #66CCFF
+}
+
+A:visited {
+	text-decoration: #330066
+}

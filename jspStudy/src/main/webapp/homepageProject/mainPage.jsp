@@ -451,11 +451,18 @@ div.right {
 		<div class="center">
 			<%
 			//회원가입 화면을 띄운다
-			if (flag.equals("regform")) {
+			if(flag.equals("shopping")){
 			%>
 			<%@ include file="./regForm.jsp"%>
-			<%
-			//회원정보변경화면을 메인에 띄운다
+			<%	
+			}else if (flag.equals("regform")) {
+			%>
+			<%@ include file="./shoppingMenu.jsp"%>
+			<%	
+			}else if (flag.equals("newProduct")) {
+			%>
+			<%@ include file="./productAddForm.jsp"%>
+			<%//회원정보변경화면을 메인에 띄운다
 			} else if (flag.equals("memberChange")) {
 			%>
 			<%@ include file="./memberChange.jsp"%>

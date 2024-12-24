@@ -5,9 +5,6 @@ import java.sql.Timestamp;
 public class ProductsVO {
 	private int num;
 	private String name;
-	private int ref;
-	private int step;
-	private int depth;
 	private Timestamp regdate;
 	private String content;
 	private int price;
@@ -17,14 +14,11 @@ public class ProductsVO {
 	
 	public ProductsVO() {}
 
-	public ProductsVO(int num, String name, int ref, int step, int depth, Timestamp regdate, String content,
+	public ProductsVO(int num, String name, Timestamp regdate, String content,
 			int price, int amount, String tag, String imgUrl) {
 		super();
 		this.num = num;
 		this.name = name;
-		this.ref = ref;
-		this.step = step;
-		this.depth = depth;
 		this.regdate = regdate;
 		this.content = content;
 		this.price = price;
@@ -49,29 +43,6 @@ public class ProductsVO {
 		this.name = name;
 	}
 
-	public int getRef() {
-		return ref;
-	}
-
-	public void setRef(int ref) {
-		this.ref = ref;
-	}
-
-	public int getStep() {
-		return step;
-	}
-
-	public void setStep(int step) {
-		this.step = step;
-	}
-
-	public int getDepth() {
-		return depth;
-	}
-
-	public void setDepth(int depth) {
-		this.depth = depth;
-	}
 
 	public Timestamp getRegdate() {
 		return regdate;
@@ -123,8 +94,8 @@ public class ProductsVO {
 
 	@Override
 	public String toString() {
-		return "ProductsVO [num=" + num + ", name=" + name + ", ref=" + ref + ", step=" + step + ", depth="
-				+ depth + ", regdate=" + regdate + ", content=" + content + ", price=" + price + ", amount=" + amount
+		return "ProductsVO [num=" + num + ", name=" + name 
+				+ ", regdate=" + regdate + ", content=" + content + ", price=" + price + ", amount=" + amount
 				+ ", tag=" + tag + ", imgUrl=" + imgUrl + "]";
 	}
 	

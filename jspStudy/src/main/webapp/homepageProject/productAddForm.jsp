@@ -20,6 +20,10 @@
             <td align="left">&nbsp;&nbsp;<input type="text" name="amount" required /><span></span></td>
         </tr>
         <tr>
+            <td>설명</td>
+            <td align="left">&nbsp;&nbsp;<textarea name="content" rows="13" cols="50" required></textarea><span></span></td>
+        </tr>
+        <tr>
             <td>태그</td>
             <td align="left">&nbsp;&nbsp;<input type="text" name="tag" required /><span></span></td>
         </tr>

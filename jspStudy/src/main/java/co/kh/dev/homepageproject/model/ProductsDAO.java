@@ -46,76 +46,34 @@ public class ProductsDAO {
 	private final String SELECT_COUNT_WRITER_SQL = "SELECT COUNT(*) AS count FROM Products WHERE writer LIKE ?";
 	private final String SELECT_COUNT_CONTENT_SQL = "SELECT COUNT(*) AS count FROM Products WHERE content LIKE ?";
 	private final String SELECT_ADMIN_COUNT_SQL = "select count(*) as count from Products WHERE writer LIKE '%(관리자)'";
-	private final String SELECT_MAX_NUM_SQL = "select max(num) as num from Products";
 	private final String SELECT_ONE_SQL = "select * from Products where num = ?";
 	private final String SELECT_PASS_ID_CHECK_SQL = "select count(*) count from Products where num = ? and pass = ?";
 	private final String DELETE_SQL = "DELETE FROM Products WHERE NUM = ? AND PASS = ?";
 	private final String DELETE_ADMIN_SQL = "DELETE FROM Products WHERE NUM = ?";
 	private final String UPDATE_SQL = "update Products set writer=?,subject=?,content=? where num=?";
-	private final String INSERT_SQL = "insert into Products(num, writer, subject, pass, regdate, ref, step, depth, content, ip) values(Products_seq.nextval,?,?,?,?,?,?,?,?,?)";
-	private final String UPDATE_STEP_SQL = "update Products set step=step+1 where ref= ? and step > ?";
+	private final String INSERT_SQL = "INSERT INTO products (num,name, price, amount, tag, content, imgUrl, REGDATE) VALUES (commentmember_SEQ.nextval,?, ?, ?, ?, ?, ?, ?)";
 	private final String UPDATE_READCOUNT_SQL = "update Products set readcount=readcount+1 where num = ?";
 	private final String ADD_COMMENT_READCOUNT_SQL = "update Products set comments = comments + 1 where num = ?";
 	private final String DOWN_COMMENT_READCOUNT_SQL = "update Products set comments = comments - 1 where num = ?";
 	
 	
 	
-	public Boolean insertDB(ProductsVO vo) {
+	public Boolean insertDB(ProductsVO pvo) {
 		ConnectionPool cp = ConnectionPool.getInstance();
 		Connection con = cp.dbCon();
 		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		int number = 0;
-		int step = 0;
-		int depth = 0;
-		int ref = 1;
 		int count = 0;
 
-		// num 현재 보드속에 가장최고값에 +1, 값이 하나도 없으면 1
-		try {
-			pstmt = con.prepareStatement(SELECT_MAX_NUM_SQL);
-			rs = pstmt.executeQuery();
-			if (rs.next()) {
-				number = rs.getInt("num") + 1;
-			} else {
-				number = 1;
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		// getNum() = 0이면 새글, 0이 아니면 답변글이다
-		try {
-			if (vo.getNum() != 0) {// 답변글일경우
-				pstmt = con.prepareStatement(UPDATE_STEP_SQL);
-				pstmt.setInt(1, vo.getRef());
-				pstmt.setInt(2, vo.getStep());
-				pstmt.executeUpdate();
-				ref = vo.getRef();
-				step = vo.getStep() + 1;
-				depth = vo.getDepth() + 1;
-			} else {// 새 글일 경우
-				ref = number; // 가장 최고값+1
-				step = 0;
-				depth = 0;
-			} // 쿼리를 작성
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-
-		// 게시판글 등록하기
+		// 상품 등록하기
 		try {
 			pstmt = con.prepareStatement(INSERT_SQL);
-			pstmt.setString(1, vo.getWriter());
-			pstmt.setString(2, vo.getSubject());
-			pstmt.setString(3, vo.getPass());
-			pstmt.setTimestamp(4, vo.getRegdate());
-			pstmt.setInt(5, ref);
-			pstmt.setInt(6, step);
-			pstmt.setInt(7, depth);
-			pstmt.setString(8, vo.getContent());
-			pstmt.setString(9, vo.getIp());
+			pstmt.setString(1, pvo.getName());              // 제품 이름 설정
+			pstmt.setInt(2, pvo.getPrice());                // 제품 가격 설정
+			pstmt.setInt(3, pvo.getAmount());               // 제품 수량 설정
+			pstmt.setString(4, pvo.getTag());               // 제품 태그 설정
+			pstmt.setString(5, pvo.getContent());           // 제품 설명 설정
+			pstmt.setString(6, pvo.getImgUrl());            // 제품 이미지 URL 설정
+			pstmt.setTimestamp(7, pvo.getRegdate());        // 제품 등록일 설정
 			count = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -125,6 +83,7 @@ public class ProductsDAO {
 		return (count > 0) ? true : false;
 	}
 
+	/*
 	public int selectCountDB(ProductsVO bvo) {
 		ConnectionPool cp = ConnectionPool.getInstance();
 		Connection con = cp.dbCon();
@@ -481,5 +440,7 @@ public class ProductsDAO {
 			e.printStackTrace();
 		}
 	}
+	
+	*/
 
 }

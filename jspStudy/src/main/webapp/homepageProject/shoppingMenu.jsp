@@ -66,8 +66,8 @@ number = count - (currentPage - 1) * pageSize;
 %>
 
 	<main>
-		<b>글목록(전체 글:<%=count%>)
-		</b>
+		<br>
+		<br>
 		<table width="800">
 			<tr>
 				<td align="right"   class="lightgrey" >
@@ -85,22 +85,41 @@ number = count - (currentPage - 1) * pageSize;
 		<%
 		} else {
 		%>
-		<table   width="800" cellpadding="0" cellspacing="0" align="center">
+		<table   width="800" cellpadding="0" cellspacing="0" align="left">
+			<tr height="30" align="left">
 			<%
+			int rowCount = 0;
 			for (ProductsVO ppvo : ProductsList) {
-				
+				if(rowCount <4){
 			%>
-			<tr height="30">
 				<td width="250"  bgcolor="white"  >
 					<a href="mainPage.jsp?num=<%=ppvo.getNum()%>&pageNum=1&flag=product&cPageNum=1"> 
-						<img src="<%=ppvo.getImgUrl()%>" alt="" class="shopMenuImg"><br>
-						<%=ppvo.getName()%>
+						&nbsp;&nbsp;&nbsp;<img src="<%=ppvo.getImgUrl()%>" alt="" class="shopMenuImg"><br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=ppvo.getName()%>
 					</a> 
 				</td>
-			</tr>
-			<%
+				<%
+				}  
+				if(rowCount == 4){
+					%>	
+					<tr align="left">
+				<%	
+				}
+				if(rowCount >= 4){
+				%>	
+					<td width="250"  bgcolor="white"  >
+					<a href="mainPage.jsp?num=<%=ppvo.getNum()%>&pageNum=1&flag=product&cPageNum=1"> 
+						&nbsp;&nbsp;&nbsp;<img src="<%=ppvo.getImgUrl()%>" alt="" class="shopMenuImg"><br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=ppvo.getName()%>
+					</a> 
+				</td>
+				
+				<% 	
+				}
+				rowCount++;
 			}
 			%>
+			</tr>
 		</table>
 		<%
 		}
@@ -119,24 +138,24 @@ number = count - (currentPage - 1) * pageSize;
  			if (endPage > pageCount) endPage = pageCount;
  			if (startPage > pageBlock) { 
 %>
- 				<a href="mainPage.jsp?pageNum=<%=startPage-pageBlock%>">[이전]</a>
+ 				<a href="mainPage.jsp?flag=shop&pageNum=<%=startPage-pageBlock%>">[이전]</a>
 <%
  				}
  			for (int i = startPage ; i <= endPage ; i++) { 
 				if(currentPage == i){
 %>					
- 				<a href="mainPage.jsp?pageNum=<%= i %>">[[<%= i %>]]</a>
+ 				<a href="mainPage.jsp?flag=shop&pageNum=<%= i %>">[[<%= i %>]]</a>
 <% 				
 				}else{
 %>					
- 				<a href="mainPage.jsp?pageNum=<%= i %>">[<%= i %>]</a>
+ 				<a href="mainPage.jsp?flag=shop&pageNum=<%= i %>">[<%= i %>]</a>
 <% 				
 				}
 %>
 <%
 				}
  			if (endPage < pageCount) { %>
- 				<a href="mainPage.jsp?pageNum=<%=startPage+pageBlock%>">[다음]</a>
+ 				<a href="mainPage.jsp?flag=shop&pageNum=<%=startPage+pageBlock%>">[다음]</a>
 <%
  				}
  %>

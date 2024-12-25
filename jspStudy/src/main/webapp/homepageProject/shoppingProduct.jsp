@@ -22,28 +22,26 @@ try {
 	<form method="POST" name="shoppingPurchaseProc" action="shoppingPurchaseProc.jsp">
 		<table width="700" cellspacing="0" cellpadding="0" align="center">
 			<tr>
-				<td align="center"><img src="<%=bvo.getImgUrl()%>" alt=""
-					class="shopProductImg" rowspan="10">
+				<td rowspan="5" align="center"><img src="<%=bvo.getImgUrl()%>" alt=""
+					class="shopProductImg" >
 					<input type="hidden" name="productNum" value="<%=bvo.getNum()%>"> 
 					<input type="hidden" name="productPrice" value="<%=bvo.getPrice()%>"> 
+					<input type="hidden" name="productName" value="<%=bvo.getName()%>"> 
+					<input type="hidden" name="productImgUrl" value="<%=bvo.getImgUrl()%>"> 
 				</td>
+				<td align="center"  align="center" bgcolor="white"><%=bvo.getName()%></td>
 			</tr>
 			<tr>
-				<td align="center" width="100" align="center" bgcolor="white"><%=bvo.getName()%></td>
+				<td align="center"  align="center" bgcolor="white"><%=bvo.getPrice()%>원</td>
 			</tr>
 			<tr>
-				<td align="center" width="100" align="center" bgcolor="white"><%=bvo.getPrice()%></td>
+				<td align="center" align="center" bgcolor="white"><%=bvo.getTag()%></td>
 			</tr>
+			
 			<tr>
-				<td align="center" width="100" align="center" bgcolor="white"><%=bvo.getTag()%></td>
-			</tr>
-			<tr>
-				<td align="center" width="100" align="center" bgcolor="white"><%=bvo.getContent()%></td>
-			</tr>
-			<tr>
-				<td align="center" width="100" align="center" bgcolor="white">
+				<td align="center"  align="center" bgcolor="white">
 				구매수량 : 
-					<select id="number" name="number">
+					<select id="number" name="productAmount">
 						<option value="1">1</option>
 						<option value="2">2</option>
 						<option value="3">3</option>
@@ -77,7 +75,7 @@ try {
 				</td>
 			</tr>
 			<tr>
-				<td align="center" width="100" align="center" bgcolor="white">
+				<td align="center"  align="center" bgcolor="white">
 <%
  					if (sessionId != null && sessionId.equals("admin")) {
 %>
@@ -96,7 +94,10 @@ try {
 				</td>
 			</tr>
 			<tr>
-				<td colspan="8 align=" right"  class="lightgrey" colspan="2">
+				<td colspan="2" align="left"  align="center" bgcolor="white"><%=bvo.getContent()%></td>
+			</tr>
+			<tr>
+				<td align="right"  class="lightgrey" colspan="2">
 <%
  if (sessionId != null && sessionId.equals("admin")) {
  %>

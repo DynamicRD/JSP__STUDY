@@ -11,7 +11,8 @@ public class ProductsVO {
 	private int amount;
 	private String tag;
 	private String imgUrl;
-	
+	private String searchCheck;
+
 	public ProductsVO() {}
 
 	public ProductsVO(int num, String name, Timestamp regdate, String content,
@@ -27,6 +28,13 @@ public class ProductsVO {
 		this.imgUrl = imgUrl;
 	}
 
+	public String getSearchCheck() {
+		return searchCheck;
+	}
+	
+	public void setSearchCheck(String searchCheck) {
+		this.searchCheck = searchCheck;
+	}
 	public int getNum() {
 		return num;
 	}

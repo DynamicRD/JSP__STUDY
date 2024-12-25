@@ -6,12 +6,15 @@
 			<li class="dropdown">
 				<a href="#" class="dropbtn">사이트소개</a>
 				<div class="dropdown-content">
-					<a href="#">배경</a> <a href="#">역사</a> <a href="#">비전</a>
+					<a href="#">배경</a> 
+					<a href="#">역사</a> 
+					<a href="#">비전</a>
 				</div></li>
 			<li class="dropdown">
 				<a href="#" class="dropbtn">서비스</a>
 				<div class="dropdown-content">
-					<a href="#">게시판</a>
+					<a href="mainPage.jsp?flag=none">게시판</a>
+					<a href="mainPage.jsp?flag=shop">쇼핑몰</a>
 				</div></li>
 			<li class="dropdown">
 				<a href="#" class="dropbtn">자료실</a>
@@ -25,6 +28,6 @@
 				</div></li>
 		</ul>
 		<p>
-			<a href=""><i class="fa-brands fa-facebook"></i></a> <a href=""><i
-				class="fa-solid fa-dove"></i></a>
+			<a href=""><i class="fa-brands fa-facebook"></i></a> <a href="">
+			<i class="fa-solid fa-dove"></i></a>
 		</p>

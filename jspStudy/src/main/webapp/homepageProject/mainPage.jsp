@@ -319,6 +319,17 @@ div.center {
 	background-color: #CEF6F5;
 }
 
+.shopMenuImg {
+    width: 150px;
+    height: 200px;
+    object-fit: cover; /* 이미지 비율을 유지하면서 영역에 맞게 잘라냄 */
+}
+
+.shopProductImg {
+    width: 400px;
+    height: 600px;
+    object-fit: cover; /* 이미지 비율을 유지하면서 영역에 맞게 잘라냄 */
+}
 /* 우측 */
 div.right {
 	width: 300px;
@@ -451,13 +462,13 @@ div.right {
 		<div class="center">
 			<%
 			//회원가입 화면을 띄운다
-			if(flag.equals("shopping")){
+			if(flag.equals("shop")){
 			%>
-			<%@ include file="./regForm.jsp"%>
+			<%@ include file="./shoppingMenu.jsp"%>
 			<%	
 			}else if (flag.equals("regform")) {
 			%>
-			<%@ include file="./shoppingMenu.jsp"%>
+			<%@ include file="./regForm.jsp"%>
 			<%	
 			}else if (flag.equals("newProduct")) {
 			%>
@@ -476,6 +487,10 @@ div.right {
 			%>
 			<%@ include file="./findPassForm.jsp"%>
 			<%
+			} else if (flag.equals("product")) {
+				%>
+				<%@ include file="./shoppingProduct.jsp"%>
+				<%
 			} else if (tableflag.equals("none")) {
 			%>
 			<%@ include file="./tableMenu.jsp"%>

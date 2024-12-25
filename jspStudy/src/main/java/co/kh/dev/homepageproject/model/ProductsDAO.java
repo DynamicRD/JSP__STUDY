@@ -29,8 +29,9 @@ public class ProductsDAO {
 
 	private final String SELECT_SQL = "select * from Products order by num desc";
 	private final String SELECT_START_END_SQL = " select * from "
-			+ "(select rownum AS rnum, num, writer, subject, pass, regdate, readcount, ref, step, depth,comments, content, ip "
-			+ "from (select * from Products order by ref desc, step asc)) where rnum>=? and rnum<=?";
+		    + "(select rownum AS rnum, num, name, regdate, price, amount, tag, imgUrl, content "
+		    + " from (select * from Products order by num desc)) "
+		    + "where rnum >= ? and rnum <= ?";
 	private final String SELECT_START_END_SUBJECT_SQL = " select * from "
 			+ "(select rownum AS rnum, num, writer, subject, pass, regdate, readcount, ref, step, depth,comments, content, ip "
 			+ "from (select * from Products order by ref desc, step asc)) where rnum>=? and rnum<=? and subject LIKE ?";
@@ -52,7 +53,6 @@ public class ProductsDAO {
 	private final String DELETE_ADMIN_SQL = "DELETE FROM Products WHERE NUM = ?";
 	private final String UPDATE_SQL = "update Products set writer=?,subject=?,content=? where num=?";
 	private final String INSERT_SQL = "INSERT INTO products (num,name, price, amount, tag, content, imgUrl, REGDATE) VALUES (commentmember_SEQ.nextval,?, ?, ?, ?, ?, ?, ?)";
-	private final String UPDATE_READCOUNT_SQL = "update Products set readcount=readcount+1 where num = ?";
 	private final String ADD_COMMENT_READCOUNT_SQL = "update Products set comments = comments + 1 where num = ?";
 	private final String DOWN_COMMENT_READCOUNT_SQL = "update Products set comments = comments - 1 where num = ?";
 	
@@ -83,7 +83,7 @@ public class ProductsDAO {
 		return (count > 0) ? true : false;
 	}
 
-	/*
+
 	public int selectCountDB(ProductsVO bvo) {
 		ConnectionPool cp = ConnectionPool.getInstance();
 		Connection con = cp.dbCon();
@@ -95,7 +95,7 @@ public class ProductsDAO {
 			case "none":
 				pstmt = con.prepareStatement(SELECT_COUNT_SQL);
 				break;
-			case "subject":
+/*			case "subject":
 				pstmt = con.prepareStatement(SELECT_COUNT_SUBJECT_SQL);
 				pstmt.setString(1, "%"+bvo.getSubject()+"%");
 				System.out.println("한국어 문제"+"%"+bvo.getSubject()+"%");
@@ -108,6 +108,7 @@ public class ProductsDAO {
 				pstmt = con.prepareStatement(SELECT_COUNT_CONTENT_SQL);
 				pstmt.setString(1, "%"+bvo.getContent()+"%");
 				break;
+*/				
 			default:
 				pstmt = con.prepareStatement(SELECT_COUNT_SQL);
 				break;
@@ -123,7 +124,7 @@ public class ProductsDAO {
 		}
 		return count;
 	}
-	
+	/*
 	public int selectAdminCountDB() {
 		ConnectionPool cp = ConnectionPool.getInstance();
 		Connection con = cp.dbCon();
@@ -177,37 +178,28 @@ public class ProductsDAO {
 		return ProductsList;
 	}
 
+*/
 	public ProductsVO selectProductsDB(ProductsVO vo) {
 		ConnectionPool cp = ConnectionPool.getInstance();
 		Connection con = cp.dbCon();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		ProductsVO bvo = null;
-		int count = 0;
 		try {
-			// 조회수 증가
-
-			pstmt = con.prepareStatement(UPDATE_READCOUNT_SQL);
-			pstmt.setInt(1, vo.getNum());
-			pstmt.executeUpdate();
-
 			// 글 전체내용 조회
 			pstmt = con.prepareStatement(SELECT_ONE_SQL);
 			pstmt.setInt(1, vo.getNum());
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
-				int num = rs.getInt("num");
-				String writer = rs.getString("writer");
-				String subject = rs.getString("subject");
-				String pass = rs.getString("pass");
-				Timestamp regdate = rs.getTimestamp("regdate");
-				int readcount = rs.getInt("readcount");
-				int ref = rs.getInt("ref");
-				int step = rs.getInt("step");
-				int depth = rs.getInt("depth");
-				String content = rs.getString("content");
-				String ip = rs.getString("ip");
-				bvo = new ProductsVO(num, writer, subject, pass, readcount, ref, step, depth, regdate, content, ip);
+				int num = rs.getInt("num");               // 제품 번호
+				String name = rs.getString("name");        // 제품 이름
+				Timestamp regdate = rs.getTimestamp("regdate");  // 등록일시
+				int price = rs.getInt("price");            // 가격
+				int amount = rs.getInt("amount");          // 재고 수량
+				String tag = rs.getString("tag");          // 태그
+				String imgUrl = rs.getString("imgUrl");    // 이미지 URL
+				String content = rs.getString("content");  // 내용
+				bvo = new ProductsVO(num, name, regdate, content, price, amount, tag, imgUrl);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -217,6 +209,7 @@ public class ProductsDAO {
 		return bvo;
 	}
 
+	/*
 	public ProductsVO selectProductsOneDB(ProductsVO vo) {
 		ConnectionPool cp = ConnectionPool.getInstance();
 		Connection con = cp.dbCon();
@@ -252,6 +245,8 @@ public class ProductsDAO {
 	}
 
 	
+*/	
+	
 	public ArrayList<ProductsVO> selectStartEndDB(int start, int end,ProductsVO bvo) {
 		ConnectionPool cp = ConnectionPool.getInstance();
 		Connection con = cp.dbCon();
@@ -265,6 +260,7 @@ public class ProductsDAO {
 				pstmt.setInt(1, start);
 				pstmt.setInt(2, end);
 				break;
+/*				
 			case "subject":
 				pstmt = con.prepareStatement(SELECT_START_END_SUBJECT_SQL);
 				pstmt.setInt(1, start);
@@ -283,6 +279,7 @@ public class ProductsDAO {
 				pstmt.setInt(2, end);
 				pstmt.setString(3, "%"+bvo.getContent()+"%");
 				break;
+*/				
 			default:
 				pstmt = con.prepareStatement(SELECT_START_END_SQL);
 				pstmt.setInt(1, start);
@@ -292,19 +289,15 @@ public class ProductsDAO {
 			
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
-				int num = rs.getInt("num");
-				String writer = rs.getString("writer");
-				String subject = rs.getString("subject");
-				String pass = rs.getString("pass");
-				Timestamp regdate = rs.getTimestamp("regdate");
-				int readcount = rs.getInt("readcount");
-				int ref = rs.getInt("ref");
-				int step = rs.getInt("step");
-				int depth = rs.getInt("depth");
-				int conmments = rs.getInt("comments");
-				String content = rs.getString("content");
-				String ip = rs.getString("ip");
-				ProductsVO vo = new ProductsVO(num, writer, subject, pass, readcount, ref, step, depth, conmments, regdate, content, ip);
+				int num = rs.getInt("num");               // 제품 번호
+				String name = rs.getString("name");        // 제품 이름
+				Timestamp regdate = rs.getTimestamp("regdate");  // 등록일시
+				int price = rs.getInt("price");            // 가격
+				int amount = rs.getInt("amount");          // 재고 수량
+				String tag = rs.getString("tag");          // 태그
+				String imgUrl = rs.getString("imgUrl");    // 이미지 URL
+				String content = rs.getString("content");  // 내용
+				ProductsVO vo = new ProductsVO(num, name, regdate, content, price, amount, tag, imgUrl);
 				ProductsList.add(vo);
 			}
 		} catch (SQLException e) {
@@ -315,6 +308,7 @@ public class ProductsDAO {
 		return ProductsList;
 	}
 	
+/*	
 	public ArrayList<ProductsVO> selectAdminStartEndDB() {
 		ConnectionPool cp = ConnectionPool.getInstance();
 		Connection con = cp.dbCon();

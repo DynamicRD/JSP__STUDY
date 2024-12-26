@@ -330,6 +330,11 @@ div.center {
     height: 600px;
     object-fit: cover; /* 이미지 비율을 유지하면서 영역에 맞게 잘라냄 */
 }
+.myPageShopImg {
+    width: 100px;
+    height: 150px;
+    object-fit: cover; /* 이미지 비율을 유지하면서 영역에 맞게 잘라냄 */
+}
 /* 우측 */
 div.right {
 	width: 300px;
@@ -461,8 +466,15 @@ div.right {
 		<!-- 		가운데     	-->
 		<div class="center">
 			<%
-			//회원가입 화면을 띄운다
-			if(flag.equals("shop")){
+			if(flag.equals("myPagePurchaseList")){
+			%>
+			<%@ include file="./myPagePurchaseList.jsp"%>
+			<%
+			}else	if(flag.equals("myPage")){
+			%>
+			<%@ include file="./myPageMenu.jsp"%>
+			<%
+			}else if(flag.equals("shop")){
 			%>
 			<%@ include file="./shoppingMenu.jsp"%>
 			<%	

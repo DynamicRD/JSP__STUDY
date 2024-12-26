@@ -8,8 +8,8 @@
 				<td><%=name%>님 방문을 환영합니다</td>
 			</tr>
 		</table>
+		<input type="button" onclick="location.href = 'mainPage.jsp?flag=myPage'" value="마이페이지">
 	<input type="button" onclick="location.href = 'logout.jsp'" value="로그아웃"> 
-	<input type="button" onclick="location.href = 'mainPage.jsp?flag=memberChange'" value="회원정보수정">
 	<%if(id != null && id.equals("admin")){ %>
 	<input type="button" onclick="location.href = 'mainPage.jsp?flag=newProduct'" value="상품추가">
 	<%} %>

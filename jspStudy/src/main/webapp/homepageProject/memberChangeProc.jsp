@@ -24,15 +24,10 @@ if(flag == true){
 	message = "회원정보가 변경실패했습니다.";
 }
 %>
-<html>
-	<head>
 	<script>
 	window.onload = function() {
 	alert('<%= message%>');
-	window.location.href = 'mainPage.jsp?flag=none';
+	window.location.href = 'mainPage.jsp?flag=myPage';
 	};
 	</script>
-	</head>
-	<body>
-	</body>
-	</html>
+

@@ -1,3 +1,4 @@
+<%@page import="co.kh.dev.homepageproject.model.ProductsDAO"%>
 <%@page import="java.sql.Timestamp"%>
 <%@page import="co.kh.dev.homepageproject.model.BasketVO"%>
 <%@page import="co.kh.dev.homepageproject.model.BasketDAO"%>
@@ -11,6 +12,7 @@ String price = request.getParameter("productPrice");
 String name = request.getParameter("productName");
 String imgUrl = request.getParameter("productImgUrl");
 String amount = request.getParameter("productAmount");
+String shopAmount = request.getParameter("productShopAmount");
 String id = (String)session.getAttribute("id");
 
 if (id ==null || pNum ==null || price== null) {
@@ -20,6 +22,13 @@ if (id ==null || pNum ==null || price== null) {
 	history.go(-1);
 </script>
 <%
+}else if( (Integer.parseInt(shopAmount))<(Integer.parseInt(amount))){
+%>
+<script>
+	alert("구매하시려는 양이 재고보다 많습니다");
+	history.go(-1);
+</script>
+<% 	
 }
 bvo.setpNum((Integer.parseInt(pNum)));
 bvo.setPrice((Integer.parseInt(price)));
@@ -29,6 +38,9 @@ bvo.setAmount((Integer.parseInt(amount)));
 bvo.setId(id);
 bvo.setRegDate(new Timestamp(System.currentTimeMillis()));
 boolean flag = bdao.insertDB(bvo);
+
+ProductsDAO pdao = ProductsDAO.getInstance();
+boolean purchaseFlag = pdao.updatePurchaseDB((Integer.parseInt(amount)), (Integer.parseInt(pNum)));
 %>
 <!-- 3.화면출력한다 -->
 <%

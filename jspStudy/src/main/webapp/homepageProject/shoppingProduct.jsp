@@ -28,6 +28,7 @@ try {
 					<input type="hidden" name="productPrice" value="<%=bvo.getPrice()%>"> 
 					<input type="hidden" name="productName" value="<%=bvo.getName()%>"> 
 					<input type="hidden" name="productImgUrl" value="<%=bvo.getImgUrl()%>"> 
+					<input type="hidden" name="productShopAmount" value="<%=bvo.getAmount()%>"> 
 				</td>
 				<td align="center"  align="center" bgcolor="white"><%=bvo.getName()%></td>
 			</tr>
@@ -40,6 +41,8 @@ try {
 			
 			<tr>
 				<td align="center"  align="center" bgcolor="white">
+				재고:<%=bvo.getAmount()%>
+				<br><br><br>
 				구매수량 : 
 					<select id="number" name="productAmount">
 						<option value="1">1</option>
@@ -81,9 +84,13 @@ try {
 %>
 				 관리자 ID 입니다
 <%
+ 					}else if(sessionId != null && bvo.getAmount() <= 0){
+%>
+					품절되었습니다
+<%
  					}else if(sessionId != null){
 %>
-				<input class="search" type="submit" value="장바구니에 담기"> 
+					<input class="search" type="submit" value="장바구니에 담기"> 
 <%
  					}else{
 %>				

@@ -97,7 +97,7 @@
 %>
             <script type="text/javascript">
                 alert("상품등록에 성공했습니다");
-                window.location.href = "mainPage.jsp"; // 알림창 후 로그인 페이지로 이동
+                window.location.href = "mainPage.jsp?flag=shop"; // 알림창 후 로그인 페이지로 이동
             </script>
 <%
         } else {

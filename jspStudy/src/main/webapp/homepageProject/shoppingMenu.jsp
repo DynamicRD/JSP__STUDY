@@ -95,7 +95,17 @@ number = count - (currentPage - 1) * pageSize;
 				<td width="250"  bgcolor="white"  >
 					<a href="mainPage.jsp?num=<%=ppvo.getNum()%>&pageNum=1&flag=product&cPageNum=1"> 
 						&nbsp;&nbsp;&nbsp;<img src="<%=ppvo.getImgUrl()%>" alt="" class="shopMenuImg"><br>
+<%
+						if(ppvo.getAmount() <= 0){
+%>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=ppvo.getName()%>(품절)
+<% 
+						}else{
+%>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=ppvo.getName()%>
+<%
+						}
+%>
 					</a> 
 				</td>
 				<%
@@ -110,7 +120,17 @@ number = count - (currentPage - 1) * pageSize;
 					<td width="250"  bgcolor="white"  >
 					<a href="mainPage.jsp?num=<%=ppvo.getNum()%>&pageNum=1&flag=product&cPageNum=1"> 
 						&nbsp;&nbsp;&nbsp;<img src="<%=ppvo.getImgUrl()%>" alt="" class="shopMenuImg"><br>
+<%
+						if(ppvo.getAmount() <= 0){
+%>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=ppvo.getName()%>(품절)
+<% 
+						}else{
+%>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=ppvo.getName()%>
+<%
+						}
+%>
 					</a> 
 				</td>
 				

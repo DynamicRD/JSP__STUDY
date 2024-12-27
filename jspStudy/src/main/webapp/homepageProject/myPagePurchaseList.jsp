@@ -91,7 +91,7 @@ int productPrice = 0;
 				<td align="center" width="150" bgcolor="white" ><%=sdf.format(bmvo.getRegDate())%></td>
 				<td align="center" width="100" bgcolor="white" ><%=productPrice%></td>
 				<td align="center" width="100" bgcolor="white" >
-					<a href="myPageProductDelete.jsp?num=<%=bmvo.getNum()%>">
+					<a href="myPageProductDelete.jsp?num=<%=bmvo.getNum()%>&amount=<%=bmvo.getAmount()%>&pNum=<%=bmvo.getpNum()%>">
 						장바구니에서 제외하기
 					</a>
 				</td>

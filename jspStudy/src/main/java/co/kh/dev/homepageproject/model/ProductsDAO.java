@@ -53,6 +53,7 @@ public class ProductsDAO {
 	private final String DELETE_ADMIN_SQL = "DELETE FROM Products WHERE NUM = ?";
 	private final String UPDATE_SQL = "update Products set writer=?,subject=?,content=? where num=?";
 	private final String UPDATE_PURCHASE_SQL = "update Products set amount = amount - ? where num=?";
+	private final String UPDATE_RECALL_SQL = "update Products set amount = amount + ? where num=?";
 	private final String INSERT_SQL = "INSERT INTO products (num,name, price, amount, tag, content, imgUrl, REGDATE) VALUES (commentmember_SEQ.nextval,?, ?, ?, ?, ?, ?, ?)";
 	private final String ADD_COMMENT_READCOUNT_SQL = "update Products set comments = comments + 1 where num = ?";
 	private final String DOWN_COMMENT_READCOUNT_SQL = "update Products set comments = comments - 1 where num = ?";
@@ -400,6 +401,26 @@ public class ProductsDAO {
 				cp.dbClose(con, pstmt);
 			}
 	
+		return (count > 0) ? true : false;
+	}
+	
+	public boolean updateRecallDB(ProductsVO pvo) {
+		// 1: 성공, 2. 패스워드문제, 3 수정문제
+		ConnectionPool cp = ConnectionPool.getInstance();
+		Connection con = cp.dbCon();
+		PreparedStatement pstmt = null;
+		int count = 0;
+		try {
+			pstmt = con.prepareStatement(UPDATE_RECALL_SQL);
+			pstmt.setInt(1, pvo.getAmount());
+			pstmt.setInt(2, pvo.getNum());
+			count = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			cp.dbClose(con, pstmt);
+		}
+		
 		return (count > 0) ? true : false;
 	}
 	

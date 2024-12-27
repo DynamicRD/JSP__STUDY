@@ -40,8 +40,8 @@ public class BasketDAO {
 	private final String SELECT_ADMIN_COUNT_SQL = "select count(*) as count from Basket WHERE writer LIKE '%(관리자)'";
 	private final String SELECT_ONE_SQL = "select * from Basket where num = ?";
 	private final String SELECT_PASS_ID_CHECK_SQL = "select count(*) count from Basket where num = ? and pass = ?";
-	private final String DELETE_SQL = "DELETE FROM Basket WHERE NUM = ? AND PASS = ?";
-	private final String DELETE_ADMIN_SQL = "DELETE FROM Basket WHERE NUM = ?";
+	private final String DELETE_SQL = "DELETE FROM ShopBasket WHERE NUM = ?";
+	private final String DELETE_ADMIN_SQL = "DELETE FROM ShopBasket WHERE NUM = ?";
 	private final String UPDATE_SQL = "update Basket set writer=?,subject=?,content=? where num=?";
 	private final String INSERT_SQL = "INSERT INTO shopbasket (num, ID, p_num, name, regdate, price, imgUrl, amount) VALUES (shopbasket_SEQ.nextval, ?, ?, ?, ?, ?, ?, ?)";
 	private final String ADD_COMMENT_READCOUNT_SQL = "update Basket set comments = comments + 1 where num = ?";
@@ -386,8 +386,8 @@ public class BasketDAO {
 		return returnValue;
 	}
 	
-	
-	public boolean deleteDB(BasketVO vo) {
+*/	
+	public boolean deleteDB(int numInt) {
 		ConnectionPool cp = ConnectionPool.getInstance();
 		Connection con = cp.dbCon();
 		PreparedStatement pstmt = null;
@@ -395,21 +395,15 @@ public class BasketDAO {
 		
 		// 패스워드가 맞는지 점검필요
 		try {
-			if(vo.getWriter().equals("admin")) {
-			pstmt = con.prepareStatement(DELETE_ADMIN_SQL);
-			pstmt.setInt(1, vo.getNum());
-			}else {
 			pstmt = con.prepareStatement(DELETE_SQL);
-			pstmt.setInt(1, vo.getNum());	
-			pstmt.setString(2, vo.getPass());
-			}
+			pstmt.setInt(1, numInt);	
 			count = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return (count!=0)?(true):(false);
 	}
-	
+/*	
 	public void commentAddDB(BasketVO vo) {
 		ConnectionPool cp = ConnectionPool.getInstance();
 		Connection con = cp.dbCon();

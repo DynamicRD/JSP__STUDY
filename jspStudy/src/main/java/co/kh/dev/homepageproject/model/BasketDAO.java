@@ -41,6 +41,7 @@ public class BasketDAO {
 	private final String SELECT_ONE_SQL = "select * from Basket where num = ?";
 	private final String SELECT_PASS_ID_CHECK_SQL = "select count(*) count from Basket where num = ? and pass = ?";
 	private final String DELETE_SQL = "DELETE FROM ShopBasket WHERE NUM = ?";
+	private final String DELETE_ID_SQL = "DELETE FROM ShopBasket WHERE ID = ?";
 	private final String DELETE_ADMIN_SQL = "DELETE FROM ShopBasket WHERE NUM = ?";
 	private final String UPDATE_SQL = "update Basket set writer=?,subject=?,content=? where num=?";
 	private final String INSERT_SQL = "INSERT INTO shopbasket (num, ID, p_num, name, regdate, price, imgUrl, amount) VALUES (shopbasket_SEQ.nextval, ?, ?, ?, ?, ?, ?, ?)";
@@ -393,10 +394,24 @@ public class BasketDAO {
 		PreparedStatement pstmt = null;
 		int count=0;
 		
-		// 패스워드가 맞는지 점검필요
 		try {
 			pstmt = con.prepareStatement(DELETE_SQL);
 			pstmt.setInt(1, numInt);	
+			count = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return (count!=0)?(true):(false);
+	}
+	public boolean deleteIdDB(String id) {
+		ConnectionPool cp = ConnectionPool.getInstance();
+		Connection con = cp.dbCon();
+		PreparedStatement pstmt = null;
+		int count=0;
+		
+		try {
+			pstmt = con.prepareStatement(DELETE_ID_SQL);
+			pstmt.setString(1, id);	
 			count = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

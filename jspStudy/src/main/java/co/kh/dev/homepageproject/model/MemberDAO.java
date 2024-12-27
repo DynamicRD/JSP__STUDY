@@ -37,6 +37,7 @@ public class MemberDAO {
 	private final String INSERT_SQL = "insert into Member values(?,?,?,?,?,?,?,?)";
 	private final String SELECT_ZIP_SQL = "select * from zipcode where dong like ?";
 	private final String MEMBER_UPDATE_SQL = "UPDATE member SET pass = ?, name = ?, phone = ?, email = ?, zipcode = ?, address1 = ?, address2 = ? WHERE id = ?";
+	private final String MINUS_MONEY_SQL = "UPDATE member SET money = money - ? WHERE id = ?";
 	private final String FIND_MEMBER_ID = "SELECT * FROM Member WHERE NAME = ? AND EMAIL = ? AND PHONE = ?";
 	private final String FIND_MEMBER_PASS = "SELECT * FROM Member WHERE ID = ? AND EMAIL = ? AND PHONE = ?";
 	
@@ -62,6 +63,27 @@ public class MemberDAO {
 			cp.dbClose(con, pstmt, rs);
 		}
 		return (count != 0 ) ? true : false;
+	}
+	
+	public int selectMoney(String id) {
+		ConnectionPool cp = ConnectionPool.getInstance(); 
+		Connection con = cp.dbCon();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int money = 0;
+		try {
+			pstmt = con.prepareStatement(SELECT_ONE_SQL);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				money = rs.getInt("money");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			cp.dbClose(con, pstmt, rs);
+		}
+		return money;
 	}
 	
 	public String findMemberID(MemberVO mvo) {
@@ -178,6 +200,23 @@ public class MemberDAO {
 			pstmt.setString(6,mvo.getAddress1());
 			pstmt.setString(7,mvo.getAddress2());
 			pstmt.setString(8,mvo.getId());
+			count = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			cp.dbClose(con, pstmt);
+		}
+		return (count>0)?true:false;
+	}
+	public Boolean memberMinusMoney(MemberVO mvo) {
+		ConnectionPool cp = ConnectionPool.getInstance(); 
+		Connection con = cp.dbCon();
+		PreparedStatement pstmt = null;
+		int count = 0;
+		try {
+			pstmt= con.prepareStatement(MINUS_MONEY_SQL);
+			pstmt.setInt(1,mvo.getMoney());
+			pstmt.setString(2,mvo.getId());
 			count = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

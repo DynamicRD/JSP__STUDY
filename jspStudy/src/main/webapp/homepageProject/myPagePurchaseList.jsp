@@ -77,12 +77,12 @@ int productPrice = 0;
 			%>
 			<tr height="30">
 				<td width="250"  bgcolor="white"  >
-					<a href="mainPage.jsp?num=<%=bmvo.getNum()%>&pageNum=1&tableflag=select&cPageNum=1">
+					<a href="mainPage.jsp?num=<%=bmvo.getpNum()%>&pageNum=1&flag=product&cPageNum=1">
 						<img src="<%=bmvo.getImgUrl()%>" alt="" class="myPageShopImg">
 					</a> 	
 				</td>
 				<td align="center" width="100" bgcolor="white" >
-					<a href="mainPage.jsp?num=<%=bmvo.getNum()%>&pageNum=1&tableflag=select&cPageNum=1">
+					<a href="mainPage.jsp?num=<%=bmvo.getpNum()%>&pageNum=1&flag=product&cPageNum=1">
 						<%=bmvo.getName() %>
 					</a> 
 				</td>
@@ -109,7 +109,7 @@ int productPrice = 0;
 <br>
 <div>
 		<form method="POST" name="myPagePurchase" action="myPagePurchaseProc.jsp">
-		<input type="hidden" name="totalPrice" required="required">
-		<input class="search" type="submit" value="<%=purchaseSum%>원 결재하기"> 
+		<input type="hidden" name="totalPrice" value="<%=purchaseSum%>" required="required">
+		<input class="search" type="submit" value="<%=purchaseSum%>원 결제하기"> 
 		</form>
 </div>

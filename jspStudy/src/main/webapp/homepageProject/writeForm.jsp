@@ -23,14 +23,14 @@ try {
 		<input type="hidden" name="ref" value="<%=ref%>"> 
 		<input type="hidden" name="step" value="<%=step%>"> 
 		<input type="hidden" name="depth" value="<%=depth%>">
-		<table width="400"   cellpadding="0" cellspacing="0" align="center">
+		<table width="500"   cellpadding="0" cellspacing="0" align="center">
 			<tr>
 				<td align="right" colspan="2"   class="lightgrey" ><a
 					href="mainPage.jsp">글목록</a></td>
 			</tr>
 			<tr>
-				<td width="70" align="center"   class="lightgrey" >이름</td>
-				<td width="330"  align="left"  bgcolor="white" >
+				<td width="100" align="center"   class="lightgrey" >이름</td>
+				<td width="400"  align="left"  bgcolor="white" >
 				<%if(session.getAttribute("id")!=null){%>
 					<input type="hidden" size="12" maxlength="12" name="writer" value="<%=session.getAttribute("id")%>"/>
 					<%=session.getAttribute("id")%>
@@ -52,7 +52,7 @@ try {
 			</tr>  --%>
 			<tr>
 				<td width="70" align="center"   class="lightgrey" >제목</td>
-				<td width="330"  bgcolor="white" >
+				<td width="330" align="left"  bgcolor="white" >
 <%
 					if (request.getParameter("num") == null) {
 %> 				<input type="text" size="50" maxlength="50" name="subject" /> 
@@ -67,7 +67,7 @@ try {
 			</tr>
 			<tr>
 				<td width="70" align="center"   class="lightgrey" >내용</td>
-				<td width="330"  bgcolor="white" ><textarea name="content" rows="13" cols="50"></textarea>
+				<td width="330" align="left"  bgcolor="white" ><textarea name="content" rows="13" cols="50"></textarea>
 				</td>
 			</tr>
 			<%if(session.getAttribute("id")==null){%>

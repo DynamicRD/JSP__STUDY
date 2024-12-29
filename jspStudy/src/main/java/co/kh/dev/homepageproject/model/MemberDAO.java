@@ -34,7 +34,8 @@ public class MemberDAO {
 	private final String SELECT_SQL = "SELECT * FROM Member";
 	private final String SELECT_ONE_SQL = "SELECT * FROM Member WHERE ID = ?";
 	private final String SELECT_BY_ID_SQL = "SELECT count(*) as count FROM Member WHERE ID = ?";
-	private final String INSERT_SQL = "insert into Member values(?,?,?,?,?,?,?,?)";
+	private final String INSERT_SQL = "insert into Member values(?,?,?,?,?,?,?,?,0)";
+	private final String DELETE_SQL = "delete from member where id = ?";
 	private final String SELECT_ZIP_SQL = "select * from zipcode where dong like ?";
 	private final String MEMBER_UPDATE_SQL = "UPDATE member SET pass = ?, name = ?, phone = ?, email = ?, zipcode = ?, address1 = ?, address2 = ? WHERE id = ?";
 	private final String MINUS_MONEY_SQL = "UPDATE member SET money = money - ? WHERE id = ?";
@@ -202,6 +203,23 @@ public class MemberDAO {
 			pstmt.setString(6,mvo.getAddress1());
 			pstmt.setString(7,mvo.getAddress2());
 			pstmt.setString(8,mvo.getId());
+			count = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			cp.dbClose(con, pstmt);
+		}
+		return (count>0)?true:false;
+	}
+	
+	public Boolean memberDelete(MemberVO mvo) {
+		ConnectionPool cp = ConnectionPool.getInstance(); 
+		Connection con = cp.dbCon();
+		PreparedStatement pstmt = null;
+		int count = 0;
+		try {
+			pstmt= con.prepareStatement(DELETE_SQL);
+			pstmt.setString(1,mvo.getId());
 			count = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

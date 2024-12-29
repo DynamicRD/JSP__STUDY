@@ -23,7 +23,9 @@ System.out.println(vo.getWriter());
 boolean check = bdao.deleteDB(vo);
 if (check) {
 %>
-<meta http-equiv="Refresh" content="0;url=mainPage.jsp?pageNum=<%=pageNum%>">
+<script type="text/javascript">
+	window.location.href = "mainPage.jsp?pageNum=<%=pageNum%>"; // 알림창 후 로그인 페이지로 이동
+</script>
 <%}else{ %>
 <script>
 	alert("비밀번호가 맞지 않습니다");

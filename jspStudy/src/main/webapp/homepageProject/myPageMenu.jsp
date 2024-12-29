@@ -37,5 +37,12 @@
 					</a>&nbsp;&nbsp;&nbsp;&nbsp;
 				</td>
 			</tr>
+			<tr>
+				<td align="center"   class="myPageMenu" >
+				<a href="mainPage.jsp?flag=deleteMember">
+					<i class="fa-regular fa-circle-xmark"></i>회원탈퇴
+					</a>&nbsp;&nbsp;&nbsp;&nbsp;
+				</td>
+			</tr>
 		</table>
 </main>

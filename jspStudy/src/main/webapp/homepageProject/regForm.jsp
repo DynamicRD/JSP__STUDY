@@ -3,7 +3,7 @@
 		<form method="post" action="regProc.jsp" name="regForm" class="myform">
 			<table  >
 				<tr>
-					<td  class="login_table" colspan="2" align="center">회원 가입 정보 입력</td>
+					<td width="700px" class="login_table" colspan="2" align="center">회원 가입 정보 입력</td>
 				</tr>
 				<tr>
 					<td>아이디</td>

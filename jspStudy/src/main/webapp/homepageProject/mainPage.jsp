@@ -559,10 +559,11 @@ div.right {
 				src="/images/ad-2.png" alt="" />
 			</a>
 		</div>
-		<!-- 		가운데     	-->
 		<div class="center">
+			<%if(flag.equals("deleteMember")) { %>
+			<%@ include file="./deleteMember.jsp"%>
 			<%
-			if (flag.equals("qna")) {
+			}else if (flag.equals("qna")) {
 			%>
 			<%@ include file="./qna.jsp"%>
 			<%

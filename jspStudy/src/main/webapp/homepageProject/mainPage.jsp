@@ -335,6 +335,47 @@ div.center {
     height: 150px;
     object-fit: cover; /* 이미지 비율을 유지하면서 영역에 맞게 잘라냄 */
 }
+ .myPageMenu {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 10px 0;
+            padding: 15px 20px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .myPageMenu a {
+            color: #333;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            transition: color 0.3s ease;
+        }
+
+        /* 아이콘 크기 및 위치 */
+        .myPageMenu i {
+            font-size: 22px;
+            margin-right: 10px;
+        }
+
+        /* 호버 효과 */
+        .myPageMenu:hover {
+            background-color: #f0f0f0;
+            transform: translateY(-3px); /* 살짝 떠오르는 효과 */
+        }
+
+        .myPageMenu:hover a {
+            color: #007BFF;
+        }
+.section {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
 /* 우측 */
 div.right {
 	width: 300px;
@@ -360,6 +401,9 @@ div.right {
 	margin: 0 auto;
 }
 
+.login_block  {
+	font-size: 14px;
+}
 .login_block input {
 	margin: 10px auto;
 	width: 100%;
@@ -465,7 +509,9 @@ div.right {
 		</div>
 		<!-- 		가운데     	-->
 		<div class="center">
-			<%if(flag.equals("myComment")){ %>
+			<%if(flag.equals("background")){ %>
+			<%@ include file="./background.jsp"%>
+			<%}else if(flag.equals("myComment")){ %>
 			<%@ include file="./commentMenu.jsp"%>
 			<%}else if(flag.equals("addMoney")){ %>
 			<%@ include file="./addMoney.jsp"%>

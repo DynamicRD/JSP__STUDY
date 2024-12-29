@@ -19,7 +19,7 @@ int start = (currentPage - 1) * pageSize + 1; //4페이지 시작보여줘		(4-1
 int end = (currentPage - 1) * pageSize + 10; //4페이지 끝번호 보여줘 4*10 =>40
 String searchCheck = (String)session.getAttribute("searchType");
 String searchData = (String)session.getAttribute("search");
-
+String myId = request.getParameter("myId");
 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 %>
 <%
@@ -28,7 +28,12 @@ int number = 0;
 ArrayList<BoardMemberVO> BoardMemberList = null;
 BoardMemberDAO bdao = BoardMemberDAO.getInstance();
 BoardMemberVO bmmmvo = new BoardMemberVO();
-if(searchCheck == null){
+if(myId != null){
+	searchCheck = "myId";
+	bmmmvo.setWriter(myId);
+	bmmmvo.setSearchCheck(searchCheck);
+	count = bdao.selectCountDB(bmmmvo);//전체 글수
+}else if(searchCheck == null){
 	searchCheck = "none";
 	bmmmvo.setSearchCheck(searchCheck);
 	count = bdao.selectCountDB(bmmmvo);//전체 글수

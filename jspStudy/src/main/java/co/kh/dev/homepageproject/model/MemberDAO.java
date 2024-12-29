@@ -40,6 +40,8 @@ public class MemberDAO {
 	private final String MINUS_MONEY_SQL = "UPDATE member SET money = money - ? WHERE id = ?";
 	private final String FIND_MEMBER_ID = "SELECT * FROM Member WHERE NAME = ? AND EMAIL = ? AND PHONE = ?";
 	private final String FIND_MEMBER_PASS = "SELECT * FROM Member WHERE ID = ? AND EMAIL = ? AND PHONE = ?";
+	private final String ADD_MONEY_SQL = "UPDATE member SET money = money + ? WHERE id = ?";
+	
 	
 	// 전체를 DB에서 출력
 
@@ -215,6 +217,23 @@ public class MemberDAO {
 		int count = 0;
 		try {
 			pstmt= con.prepareStatement(MINUS_MONEY_SQL);
+			pstmt.setInt(1,mvo.getMoney());
+			pstmt.setString(2,mvo.getId());
+			count = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			cp.dbClose(con, pstmt);
+		}
+		return (count>0)?true:false;
+	}
+	public Boolean memberAddMoney(MemberVO mvo) {
+		ConnectionPool cp = ConnectionPool.getInstance(); 
+		Connection con = cp.dbCon();
+		PreparedStatement pstmt = null;
+		int count = 0;
+		try {
+			pstmt= con.prepareStatement(ADD_MONEY_SQL);
 			pstmt.setInt(1,mvo.getMoney());
 			pstmt.setString(2,mvo.getId());
 			count = pstmt.executeUpdate();

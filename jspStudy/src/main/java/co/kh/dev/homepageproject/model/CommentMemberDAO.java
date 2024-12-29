@@ -31,7 +31,11 @@ public class CommentMemberDAO {
 	private final String SELECT_START_END_BNUM_SQL = " select * from "
 			+ "(select rownum AS rnum, num,numref,b_num, writer, pass, regdate, ref, step, depth, content, ip "
 			+ "from (select * from CommentMember order by ref desc, step desc)) where numref>=? and numref<=? and b_num = ?";
+	private final String SELECT_START_END_ID_SQL = " select * from "
+			+ "(select rownum AS rnum, num,numref,b_num, writer, pass, regdate, ref, step, depth, content, ip "
+			+ "from (select * from CommentMember order by ref desc, step desc)) where numref>=? and numref<=? and writer = ?";
 	private final String SELECT_COUNT_BNUM_SQL = "select count(*) as count from CommentMember where b_num = ?";
+	private final String SELECT_COUNT_WRITER_SQL = "select count(*) as count from CommentMember where WRITER = ?";
 	private final String SELECT_MAX_NUM_SQL = "select max(numref) as numref from CommentMember where b_num = ?";
 	private final String SELECT_MAX_STEP_SQL = "select max(step) as step from CommentMember where b_num = ? and ref =?";
 	private final String SELECT_ONE_SQL = "select * from CommentMember where num = ?";
@@ -133,8 +137,13 @@ public class CommentMemberDAO {
 		ResultSet rs = null;
 		int count = 0;
 		try {
+			if(vo.getWriter() == null) {
 			pstmt = con.prepareStatement(SELECT_COUNT_BNUM_SQL);
 			pstmt.setInt(1, vo.getBnum());
+			}else {
+			pstmt = con.prepareStatement(SELECT_COUNT_WRITER_SQL);
+			pstmt.setString(1, vo.getWriter());	
+			}
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				count = rs.getInt("count");
@@ -279,17 +288,24 @@ public class CommentMemberDAO {
 		return bvo;
 	}
 
-	public ArrayList<CommentMemberVO> selectStartEndDB(int start, int end,int pageNumInt) {
+	public ArrayList<CommentMemberVO> selectStartEndDB(int start, int end,CommentMemberVO cmvo) {
 		ConnectionPool cp = ConnectionPool.getInstance();
 		Connection con = cp.dbCon();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		ArrayList<CommentMemberVO> CommentMemberList = new ArrayList<CommentMemberVO>(end-start+1);	//arrayList갯수정해줌
 		try {
+			if(cmvo.getWriter() == null) {
 			pstmt = con.prepareStatement(SELECT_START_END_BNUM_SQL);
 			pstmt.setInt(1, start);
 			pstmt.setInt(2, end);
-			pstmt.setInt(3, pageNumInt);
+			pstmt.setInt(3, cmvo.getBnum());
+			}else {
+			pstmt = con.prepareStatement(SELECT_START_END_ID_SQL);
+			pstmt.setInt(1, start);
+			pstmt.setInt(2, end);
+			pstmt.setString(3, cmvo.getWriter());	
+			}
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				int num = rs.getInt("num");

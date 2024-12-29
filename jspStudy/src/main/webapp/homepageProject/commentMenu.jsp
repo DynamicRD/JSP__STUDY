@@ -38,18 +38,23 @@ SimpleDateFormat cSdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 //---------여까지 이상 없음
 // 4. 해당된 페이지 10개를 가져온다
 int cNumber = 0;
+int cCount = 0;
 ArrayList<CommentMemberVO> cCommentMemberList = null;
 CommentMemberDAO cBdao = CommentMemberDAO.getInstance();
-
+String myId = request.getParameter("myId");
 //현재페이지의 댓글 개수 가져온다
 CommentMemberVO cccmvo = new CommentMemberVO();
 cccmvo.setBnum(numInt);
-int cCount = cBdao.selectCountDB(cccmvo); // 전체 글수
+if(myId != null){
+	cccmvo.setWriter(myId);
+}
+cCount = cBdao.selectCountDB(cccmvo); // 전체 글수
+
 
  if (cCount > 0) {
     // 현재페이지 내용 10개만 가져온다
     // 현재 페이지의 내용만 가져온다
-    cCommentMemberList = cBdao.selectStartEndDB(cStart, cEnd,numInt);
+    cCommentMemberList = cBdao.selectStartEndDB(cStart, cEnd,cccmvo);
     Collections.reverse(cCommentMemberList);
 }
 // 5. 만약 4페이지를 가져왔다면(31~40)을 가져왔다면 NUMBER = 40 전체객수 100 1페이지(100~91) 2페이지(90~81)
@@ -82,7 +87,7 @@ cNumber = (cCurrentPage - 1) * cPageSize +1;
                 <td align="center" width="100"  class="lightgrey"><%=cmvo.getIp()%></td>
                 <td align="center" width="150"  class="lightgrey"><%=cSdf.format(cmvo.getRegdate())%></td>
                 <td align="center" width="50"  class="lightgrey">
-                	<input type="button" value="답변" onclick="document.location.href='mainPage.jsp?num=<%=numInt %>&pageNum=1&tableflag=select&cPageNum=1&comment=yes&commentNum=<%=cNumber%>'">
+                	<%if(myId == null){%><input type="button" value="답변" onclick="document.location.href='mainPage.jsp?num=<%=numInt %>&pageNum=1&tableflag=select&cPageNum=1&comment=yes&commentNum=<%=cNumber%>'"><%}%>
 								</td>
 								<td align="center" width="100"  class="lightgrey">
                 <%}else{ %>
@@ -91,7 +96,7 @@ cNumber = (cCurrentPage - 1) * cPageSize +1;
                 <td align="center" width="100"  class="lightgreen"><%=cmvo.getIp()%></td>
                 <td align="center" width="150"  class="lightgreen"><%=cSdf.format(cmvo.getRegdate())%></td>
                 <td align="center" width="50"  class="lightgreen">
-                	<input type="button" value="답변" onclick="document.location.href='mainPage.jsp?num=<%=numInt %>&pageNum=1&tableflag=select&cPageNum=1&comment=yes&commentNum=<%=cNumber%>'">
+                	<%if(myId == null){%><input type="button" value="답변" onclick="document.location.href='mainPage.jsp?num=<%=numInt %>&pageNum=1&tableflag=select&cPageNum=1&comment=yes&commentNum=<%=cNumber%>'"><%}%>
 								</td>
 								<td align="center" width="100"  class="lightgreen">
                 <%} %>
@@ -124,7 +129,13 @@ cNumber = (cCurrentPage - 1) * cPageSize +1;
                         <%
                     }
                         %>
-                        <%=cmvo.getContent()%></a> 
+                        <%if(myId != null){%>
+                        <a href="mainPage.jsp?num=<%=cmvo.getBnum()%>&pageNum=1&tableflag=select&cPageNum=1"> 
+                       	<%} %>
+                        <%=cmvo.getContent()%>
+                        <%if(myId != null){%>
+                        </a> 
+                        <%} %>
                 </td>
             </tr>
             
@@ -142,7 +153,7 @@ cNumber = (cCurrentPage - 1) * cPageSize +1;
             	         cDepth = Integer.parseInt(request.getParameter("cDepth")); */
             	     }
             	%>
-            	
+            	<%if(myId == null){%>
             	    <form method="post" name="cWriteForm" action="commentWriteProc.jsp?commentPage=<%=numInt%>" onsubmit="return writeSave()">
             	        <%if(session.getAttribute("id")!=null){%>
             	            <input type="hidden" size="30" maxlength="30" name="cPass" value="<%=session.getAttribute("pass")%>" />
@@ -180,6 +191,7 @@ cNumber = (cCurrentPage - 1) * cPageSize +1;
             	                </td>
             	            </tr>
             	    </form>
+            	    <%}%>
             	<%
             
             	%>
@@ -246,6 +258,7 @@ cNumber = (cCurrentPage - 1) * cPageSize +1;
      }
 %>
 <div>
+	<%if(myId == null){%>
     <form method="post" name="cWriteForm" action="commentWriteProc.jsp?commentPage=<%=numInt%>" onsubmit="return writeSave()">
         <%if(session.getAttribute("id")!=null){%>
             <input type="hidden" size="30" maxlength="30" name="cPass" value="<%=session.getAttribute("pass")%>" />
@@ -284,6 +297,7 @@ cNumber = (cCurrentPage - 1) * cPageSize +1;
             </tr>
         </table>
     </form>
+    <%} %>
 </div>
 <%
 } catch (Exception e) {

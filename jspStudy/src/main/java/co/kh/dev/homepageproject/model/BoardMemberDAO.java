@@ -40,11 +40,15 @@ public class BoardMemberDAO {
 	private final String SELECT_START_END_CONTENT_SQL = " select * from "
 			+ "(select rownum AS rnum, num, writer, subject, pass, regdate, readcount, ref, step, depth,comments, content, ip "
 			+ "from (select * from BoardMember order by ref desc, step asc)) where rnum>=? and rnum<=? and content LIKE ?";
+	private final String SELECT_START_END_ID_SQL = " select * from "
+			+ "(select rownum AS rnum, num, writer, subject, pass, regdate, readcount, ref, step, depth,comments, content, ip "
+			+ "from (select * from BoardMember order by ref desc, step asc)) where rnum>=? and rnum<=? and writer = ?";
 	private final String SELECT_ADMIN_START_END_SQL = "SELECT * FROM BoardMember WHERE writer LIKE '%(관리자)'";
 	private final String SELECT_COUNT_SQL = "select count(*) as count from BoardMember";
 	private final String SELECT_COUNT_SUBJECT_SQL = "SELECT COUNT(*) AS count FROM BoardMember WHERE subject LIKE ?";
 	private final String SELECT_COUNT_WRITER_SQL = "SELECT COUNT(*) AS count FROM BoardMember WHERE writer LIKE ?";
 	private final String SELECT_COUNT_CONTENT_SQL = "SELECT COUNT(*) AS count FROM BoardMember WHERE content LIKE ?";
+	private final String SELECT_COUNT_ID_SQL = "SELECT COUNT(*) AS count FROM BoardMember WHERE writer = ?";
 	private final String SELECT_ADMIN_COUNT_SQL = "select count(*) as count from BoardMember WHERE writer LIKE '%(관리자)'";
 	private final String SELECT_MAX_NUM_SQL = "select max(num) as num from BoardMember";
 	private final String SELECT_ONE_SQL = "select * from BoardMember where num = ?";
@@ -148,6 +152,10 @@ public class BoardMemberDAO {
 			case "content":
 				pstmt = con.prepareStatement(SELECT_COUNT_CONTENT_SQL);
 				pstmt.setString(1, "%"+bvo.getContent()+"%");
+				break;
+			case "myId":
+				pstmt = con.prepareStatement(SELECT_COUNT_ID_SQL);
+				pstmt.setString(1, bvo.getWriter());
 				break;
 			default:
 				pstmt = con.prepareStatement(SELECT_COUNT_SQL);
@@ -323,6 +331,12 @@ public class BoardMemberDAO {
 				pstmt.setInt(1, start);
 				pstmt.setInt(2, end);
 				pstmt.setString(3, "%"+bvo.getContent()+"%");
+				break;
+			case "myId":
+				pstmt = con.prepareStatement(SELECT_START_END_ID_SQL);
+				pstmt.setInt(1, start);
+				pstmt.setInt(2, end);
+				pstmt.setString(3, bvo.getWriter());
 				break;
 			default:
 				pstmt = con.prepareStatement(SELECT_START_END_SQL);

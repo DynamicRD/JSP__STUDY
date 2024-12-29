@@ -465,7 +465,11 @@ div.right {
 		</div>
 		<!-- 		가운데     	-->
 		<div class="center">
-			<%if(flag.equals("shoppingUpdate")){ %>
+			<%if(flag.equals("myComment")){ %>
+			<%@ include file="./commentMenu.jsp"%>
+			<%}else if(flag.equals("addMoney")){ %>
+			<%@ include file="./addMoney.jsp"%>
+			<%}else if(flag.equals("shoppingUpdate")){ %>
 			<%@ include file="./shoppingUpdate.jsp"%>
 			<%
 			}else if(flag.equals("myPagePurchaseList")){
@@ -502,9 +506,9 @@ div.right {
 			<%@ include file="./findPassForm.jsp"%>
 			<%
 			} else if (flag.equals("product")) {
-				%>
+			%>
 				<%@ include file="./shoppingProduct.jsp"%>
-				<%
+			<%
 			} else if (tableflag.equals("none")) {
 			%>
 			<%@ include file="./tableMenu.jsp"%>

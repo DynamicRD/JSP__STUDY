@@ -33,18 +33,17 @@ public class ProductsDAO {
 		    + " from (select * from Products order by num desc)) "
 		    + "where rnum >= ? and rnum <= ?";
 	private final String SELECT_START_END_SUBJECT_SQL = " select * from "
-			+ "(select rownum AS rnum, num, writer, subject, pass, regdate, readcount, ref, step, depth,comments, content, ip "
-			+ "from (select * from Products order by ref desc, step asc)) where rnum>=? and rnum<=? and subject LIKE ?";
-	private final String SELECT_START_END_WRITER_SQL = " select * from "
-			+ "(select rownum AS rnum, num, writer, subject, pass, regdate, readcount, ref, step, depth,comments, content, ip "
-			+ "from (select * from Products order by ref desc, step asc)) where rnum>=? and rnum<=? and writer LIKE ?";
-	private final String SELECT_START_END_CONTENT_SQL = " select * from "
-			+ "(select rownum AS rnum, num, writer, subject, pass, regdate, readcount, ref, step, depth,comments, content, ip "
-			+ "from (select * from Products order by ref desc, step asc)) where rnum>=? and rnum<=? and content LIKE ?";
+		    + "(select rownum AS rnum, num, name, regdate, price, amount, tag, imgUrl, content "
+		    + " from (select * from Products order by num desc)) "
+		    + "where rnum >= ? and rnum <= ? and name like ?";
+	private final String SELECT_START_END_TAG_SQL = " select * from "
+		    + "(select rownum AS rnum, num, name, regdate, price, amount, tag, imgUrl, content "
+		    + " from (select * from Products order by num desc)) "
+		    + "where rnum >= ? and rnum <= ? and tag like ?";
 	private final String SELECT_ADMIN_START_END_SQL = "SELECT * FROM Products WHERE writer LIKE '%(관리자)'";
 	private final String SELECT_COUNT_SQL = "select count(*) as count from Products";
-	private final String SELECT_COUNT_SUBJECT_SQL = "SELECT COUNT(*) AS count FROM Products WHERE subject LIKE ?";
-	private final String SELECT_COUNT_WRITER_SQL = "SELECT COUNT(*) AS count FROM Products WHERE writer LIKE ?";
+	private final String SELECT_COUNT_NAME_SQL = "SELECT COUNT(*) AS count FROM Products WHERE NAME LIKE ?";
+	private final String SELECT_COUNT_TAG_SQL = "SELECT COUNT(*) AS count FROM Products WHERE TAG LIKE ?";
 	private final String SELECT_COUNT_CONTENT_SQL = "SELECT COUNT(*) AS count FROM Products WHERE content LIKE ?";
 	private final String SELECT_ADMIN_COUNT_SQL = "select count(*) as count from Products WHERE writer LIKE '%(관리자)'";
 	private final String SELECT_ONE_SQL = "select * from Products where num = ?";
@@ -97,20 +96,14 @@ public class ProductsDAO {
 			case "none":
 				pstmt = con.prepareStatement(SELECT_COUNT_SQL);
 				break;
-/*			case "subject":
-				pstmt = con.prepareStatement(SELECT_COUNT_SUBJECT_SQL);
-				pstmt.setString(1, "%"+bvo.getSubject()+"%");
-				System.out.println("한국어 문제"+"%"+bvo.getSubject()+"%");
+			case "subject":
+				pstmt = con.prepareStatement(SELECT_COUNT_NAME_SQL);
+				pstmt.setString(1, "%"+bvo.getName()+"%");
 				break;
-			case "writer":
-				pstmt = con.prepareStatement(SELECT_COUNT_WRITER_SQL);
-				pstmt.setString(1, "%"+bvo.getWriter()+"%");
+			case "tag":
+				pstmt = con.prepareStatement(SELECT_COUNT_TAG_SQL);
+				pstmt.setString(1, "%"+bvo.getTag()+"%");
 				break;
-			case "content":
-				pstmt = con.prepareStatement(SELECT_COUNT_CONTENT_SQL);
-				pstmt.setString(1, "%"+bvo.getContent()+"%");
-				break;
-*/				
 			default:
 				pstmt = con.prepareStatement(SELECT_COUNT_SQL);
 				break;
@@ -261,27 +254,19 @@ public class ProductsDAO {
 				pstmt = con.prepareStatement(SELECT_START_END_SQL);
 				pstmt.setInt(1, start);
 				pstmt.setInt(2, end);
-				break;
-/*				
+				break;		
 			case "subject":
 				pstmt = con.prepareStatement(SELECT_START_END_SUBJECT_SQL);
 				pstmt.setInt(1, start);
 				pstmt.setInt(2, end);
-				pstmt.setString(3, "%"+bvo.getSubject()+"%");
+				pstmt.setString(3, "%"+bvo.getName()+"%");
 				break;
-			case "writer":
-				pstmt = con.prepareStatement(SELECT_START_END_WRITER_SQL);
+			case "tag":
+				pstmt = con.prepareStatement(SELECT_START_END_TAG_SQL);
 				pstmt.setInt(1, start);
 				pstmt.setInt(2, end);
-				pstmt.setString(3, "%"+bvo.getWriter()+"%");
+				pstmt.setString(3, "%"+bvo.getTag()+"%");
 				break;
-			case "content":
-				pstmt = con.prepareStatement(SELECT_START_END_CONTENT_SQL);
-				pstmt.setInt(1, start);
-				pstmt.setInt(2, end);
-				pstmt.setString(3, "%"+bvo.getContent()+"%");
-				break;
-*/				
 			default:
 				pstmt = con.prepareStatement(SELECT_START_END_SQL);
 				pstmt.setInt(1, start);

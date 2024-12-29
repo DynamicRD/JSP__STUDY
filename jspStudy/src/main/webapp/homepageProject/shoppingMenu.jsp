@@ -17,8 +17,8 @@ if (pageNum == null) {
 int currentPage = Integer.parseInt(pageNum);
 int start = (currentPage - 1) * pageSize + 1; //4페이지 시작보여줘		(4-1)*10+1=>31
 int end = (currentPage - 1) * pageSize + 8; //4페이지 끝번호 보여줘 4*10 =>40
-String searchCheck = (String)session.getAttribute("searchType");
-String searchData = (String)session.getAttribute("search");
+String searchCheck = (String)session.getAttribute("shopSearchType");
+String searchData = (String)session.getAttribute("shopSearch");
 
 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 %>
@@ -33,31 +33,25 @@ if(searchCheck == null){
 	searchCheck = "none";
 	pvo.setSearchCheck(searchCheck);
 	count = pdao.selectCountDB(pvo);//전체 글수
-}
-/*
-else if(searchCheck.equals("subject")){
+}else if(searchCheck.equals("subject")){
 	pvo.setSearchCheck(searchCheck);
-	pvo.setSubject(searchData);
+	pvo.setName(searchData);
 	System.out.println("본문 문제"+"%"+searchData+"%");
 	count = pdao.selectCountDB(pvo);//전체 글수
-}else if(searchCheck.equals("writer")){
+}else if(searchCheck.equals("tag")){
 	pvo.setSearchCheck(searchCheck);
-	pvo.setWriter(searchData);
-	count = pdao.selectCountDB(pvo);//전체 글수
-}else if(searchCheck.equals("content")){
-	pvo.setSearchCheck(searchCheck);
-	pvo.setContent(searchData);
+	pvo.setTag(searchData);
 	count = pdao.selectCountDB(pvo);//전체 글수
 }
-*/
+
 System.out.println("count = "+count);
 if (count > 0) {
 	//현재페이지 내용 10개만 가져온다
 	ProductsList = pdao.selectStartEndDB(start, end,pvo);
 }
 //솔직히 좋은방법은 아닌듯
-session.setAttribute("searchType",null);
-session.setAttribute("search", null);
+session.setAttribute("shopSearchType",null);
+session.setAttribute("shopSearch", null);
 
 
 
@@ -185,13 +179,12 @@ number = count - (currentPage - 1) * pageSize;
 </div>
 <br>
 <div>
-		<form method="POST" name="searchForm" action="searchProc.jsp">
-		<select name="searchType">
+		<form method="POST" name="searchForm" action="shopSearchProc.jsp">
+		<select name="shopSearchType">
             <option value="subject">제목</option>
             <option value="tag">태그</option>
-            <option value="content">내용</option>
    	</select>
-		<input class="search" type="text" name="search"	size="20" maxlength="20" required="required">
+		<input class="search" type="text" name="shopSearch"	size="20" maxlength="20" required="required">
 		<input class="search" type="submit" value="검색"> 
 		</form>
 </div>

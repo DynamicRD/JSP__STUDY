@@ -15,7 +15,6 @@ SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 try {
 	ProductsDAO bdao = ProductsDAO.getInstance();
 	ProductsVO bvo = bdao.selectProductsDB(vo);
-	int _num = vo.getNum();
 %>
 <main>
 	<br></br>
@@ -110,9 +109,9 @@ try {
  if (sessionId != null && sessionId.equals("admin")) {
  %>
 					<input type="button" value="상품 수정"
-					onclick="document.location.href='shoppingUpdate.jsp?num=<%=_num%>'">
+					onclick="document.location.href='mainPage.jsp?flag=shoppingUpdate&num=<%=bvo.getNum()%>'">
 					&nbsp;&nbsp;&nbsp;&nbsp; <!-- 수정<1> --> <input type="button"
-					value="상품 삭제" onclick="document.location.href='shoppingDelete.jsp'">
+					value="상품 삭제" onclick="document.location.href='shoppingDelete.jsp?num=<%=bvo.getNum()%>'">
 					&nbsp;&nbsp;&nbsp;&nbsp; <!-- 수정<1> --> <%
  }
  %> <input type="button" value="상품 목록"

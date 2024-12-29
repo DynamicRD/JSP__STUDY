@@ -48,12 +48,12 @@ public class ProductsDAO {
 	private final String SELECT_ADMIN_COUNT_SQL = "select count(*) as count from Products WHERE writer LIKE '%(관리자)'";
 	private final String SELECT_ONE_SQL = "select * from Products where num = ?";
 	private final String SELECT_PASS_ID_CHECK_SQL = "select count(*) count from Products where num = ? and pass = ?";
-	private final String DELETE_SQL = "DELETE FROM Products WHERE NUM = ? AND PASS = ?";
+	private final String DELETE_SQL = "DELETE FROM Products WHERE NUM = ?";
 	private final String DELETE_ADMIN_SQL = "DELETE FROM Products WHERE NUM = ?";
-	private final String UPDATE_SQL = "update Products set writer=?,subject=?,content=? where num=?";
 	private final String UPDATE_PURCHASE_SQL = "update Products set amount = amount - ? where num=?";
 	private final String UPDATE_RECALL_SQL = "update Products set amount = amount + ? where num=?";
 	private final String INSERT_SQL = "INSERT INTO products (num,name, price, amount, tag, content, imgUrl, REGDATE) VALUES (commentmember_SEQ.nextval,?, ?, ?, ?, ?, ?, ?)";
+	private final String UPDATE_SQL = "UPDATE products SET name = ?, price = ?, amount = ?, tag = ?, content = ?, imgUrl = ?, REGDATE = ? WHERE num = ?";
 	private final String ADD_COMMENT_READCOUNT_SQL = "update Products set comments = comments + 1 where num = ?";
 	private final String DOWN_COMMENT_READCOUNT_SQL = "update Products set comments = comments - 1 where num = ?";
 	
@@ -83,7 +83,32 @@ public class ProductsDAO {
 		}
 		return (count > 0) ? true : false;
 	}
+	
+	public Boolean updateDB(ProductsVO pvo) {
+		ConnectionPool cp = ConnectionPool.getInstance();
+		Connection con = cp.dbCon();
+		PreparedStatement pstmt = null;
+		int count = 0;
 
+		// 상품 등록하기
+		try {
+			pstmt = con.prepareStatement(UPDATE_SQL);
+			pstmt.setString(1, pvo.getName());              // 제품 이름 설정
+			pstmt.setInt(2, pvo.getPrice());                // 제품 가격 설정
+			pstmt.setInt(3, pvo.getAmount());               // 제품 수량 설정
+			pstmt.setString(4, pvo.getTag());               // 제품 태그 설정
+			pstmt.setString(5, pvo.getContent());           // 제품 설명 설정
+			pstmt.setString(6, pvo.getImgUrl());            // 제품 이미지 URL 설정
+			pstmt.setTimestamp(7, pvo.getRegdate());        // 제품 등록일 설정
+			pstmt.setInt(8, pvo.getNum());  
+			count = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			cp.dbClose(con, pstmt);
+		}
+		return (count > 0) ? true : false;
+	}
 
 	public int selectCountDB(ProductsVO bvo) {
 		ConnectionPool cp = ConnectionPool.getInstance();
@@ -409,8 +434,8 @@ public class ProductsDAO {
 		return (count > 0) ? true : false;
 	}
 	
-/*	
-	public boolean deleteDB(ProductsVO vo) {
+
+	public boolean deleteDB(int num) {
 		ConnectionPool cp = ConnectionPool.getInstance();
 		Connection con = cp.dbCon();
 		PreparedStatement pstmt = null;
@@ -418,21 +443,15 @@ public class ProductsDAO {
 		
 		// 패스워드가 맞는지 점검필요
 		try {
-			if(vo.getWriter().equals("admin")) {
-			pstmt = con.prepareStatement(DELETE_ADMIN_SQL);
-			pstmt.setInt(1, vo.getNum());
-			}else {
 			pstmt = con.prepareStatement(DELETE_SQL);
-			pstmt.setInt(1, vo.getNum());	
-			pstmt.setString(2, vo.getPass());
-			}
+			pstmt.setInt(1, num);	
 			count = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return (count!=0)?(true):(false);
 	}
-	
+/*	
 	public void commentAddDB(ProductsVO vo) {
 		ConnectionPool cp = ConnectionPool.getInstance();
 		Connection con = cp.dbCon();

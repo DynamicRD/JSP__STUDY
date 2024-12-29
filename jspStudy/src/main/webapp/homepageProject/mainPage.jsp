@@ -465,8 +465,10 @@ div.right {
 		</div>
 		<!-- 		가운데     	-->
 		<div class="center">
+			<%if(flag.equals("shoppingUpdate")){ %>
+			<%@ include file="./shoppingUpdate.jsp"%>
 			<%
-			if(flag.equals("myPagePurchaseList")){
+			}else if(flag.equals("myPagePurchaseList")){
 			%>
 			<%@ include file="./myPagePurchaseList.jsp"%>
 			<%

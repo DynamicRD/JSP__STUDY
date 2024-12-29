@@ -31,7 +31,7 @@ boolean check = bdao.deleteDB(vo);
 
 <script>
 	alert("삭제되었습니다");
-	location.href = "http://localhost:8080/jspStudy/homepageProject/mainPage.jsp?num=<%=returnPage%>&pageNum=1&tableflag=select&cPageNum=1";
+	window.location.href = "mainPage.jsp?num=<%=returnPage%>&pageNum=1&tableflag=select&cPageNum=1";
 </script>
 <%
 		}else{

@@ -60,7 +60,7 @@ main {
 	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-TD, SELECT,.search {
+TD, SELECT, .search {
 	font-size: 14px;
 	color: #333;
 	line-height: 1.6;
@@ -69,6 +69,7 @@ TD, SELECT,.search {
 	border: 1px solid #ddd;
 	border-radius: 4px;
 }
+
 .search {
 	font-size: 14px;
 	color: #333;
@@ -320,62 +321,114 @@ div.center {
 }
 
 .shopMenuImg {
-    width: 150px;
-    height: 200px;
-    object-fit: cover; /* 이미지 비율을 유지하면서 영역에 맞게 잘라냄 */
+	width: 150px;
+	height: 200px;
+	object-fit: cover; /* 이미지 비율을 유지하면서 영역에 맞게 잘라냄 */
 }
 
 .shopProductImg {
-    width: 400px;
-    height: 600px;
-    object-fit: cover; /* 이미지 비율을 유지하면서 영역에 맞게 잘라냄 */
+	width: 400px;
+	height: 600px;
+	object-fit: cover; /* 이미지 비율을 유지하면서 영역에 맞게 잘라냄 */
 }
+
 .myPageShopImg {
-    width: 100px;
-    height: 150px;
-    object-fit: cover; /* 이미지 비율을 유지하면서 영역에 맞게 잘라냄 */
+	width: 100px;
+	height: 150px;
+	object-fit: cover; /* 이미지 비율을 유지하면서 영역에 맞게 잘라냄 */
 }
- .myPageMenu {
-            background-color: #ffffff;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin: 10px 0;
-            padding: 15px 20px;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-        }
 
-        .myPageMenu a {
-            color: #333;
-            text-decoration: none;
-            font-size: 18px;
-            font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            transition: color 0.3s ease;
-        }
+.myPageMenu {
+	background-color: #ffffff;
+	border-radius: 8px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	margin: 10px 0;
+	padding: 15px 20px;
+	transition: background-color 0.3s ease, transform 0.2s ease;
+}
 
-        /* 아이콘 크기 및 위치 */
-        .myPageMenu i {
-            font-size: 22px;
-            margin-right: 10px;
-        }
+.myPageMenu a {
+	color: #333;
+	text-decoration: none;
+	font-size: 18px;
+	font-weight: 500;
+	display: inline-flex;
+	align-items: center;
+	transition: color 0.3s ease;
+}
 
-        /* 호버 효과 */
-        .myPageMenu:hover {
-            background-color: #f0f0f0;
-            transform: translateY(-3px); /* 살짝 떠오르는 효과 */
-        }
+/* 아이콘 크기 및 위치 */
+.myPageMenu i {
+	font-size: 22px;
+	margin-right: 10px;
+}
 
-        .myPageMenu:hover a {
-            color: #007BFF;
-        }
+/* 호버 효과 */
+.myPageMenu:hover {
+	background-color: #f0f0f0;
+	transform: translateY(-3px); /* 살짝 떠오르는 효과 */
+}
+
+.myPageMenu:hover a {
+	color: #007BFF;
+}
+
 .section {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-        }
+	background-color: #fff;
+	padding: 20px;
+	border-radius: 8px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	margin-bottom: 20px;
+}
+
+.schedule {
+	background-color: #fff;
+	padding: 20px;
+	border-radius: 8px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	margin-bottom: 20px;
+}
+
+.content {
+	background-color: #fff;
+	padding: 20px;
+	border-radius: 8px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	margin: 20px 0;
+	display: flex;
+	flex-direction: colu
+}
+
+.faq {
+	margin-top: 20px;
+}
+
+.faq h2 {
+	font-size: 22px;
+	color: #333;
+	margin-bottom: 15px;
+}
+
+.faq-item {
+	margin-bottom: 10px;
+	background-color: #f9f9f9;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	padding: 10px;
+	cursor: pointer;
+	transition: background-color 0.3s;
+}
+
+.faq-item:hover {
+	background-color: #f1f1f1;
+}
+
+.faq-item .answer {
+	display: none;
+	margin-top: 10px;
+	font-size: 16px;
+	color: #555;
+}
 /* 우측 */
 div.right {
 	width: 300px;
@@ -401,9 +454,10 @@ div.right {
 	margin: 0 auto;
 }
 
-.login_block  {
+.login_block {
 	font-size: 14px;
 }
+
 .login_block input {
 	margin: 10px auto;
 	width: 100%;
@@ -429,7 +483,8 @@ div.right {
 	height: 300px;
 	color: white;
 	display: flex;
-	flex-direction: row; justify-content : center;
+	flex-direction: row;
+	justify-content: center;
 	align-items: center;
 	padding: 20px;
 	border-radius: 8px;
@@ -498,46 +553,64 @@ div.right {
 			<div class="left1">
 				<%@ include file="./informs.jsp"%>
 			</div>
-			<br>
-			<br> 광고1 <a href="#" target="_blank"> <img
+			<br> <br> 광고1 <a href="#" target="_blank"> <img
 				src="/images/ad-1.png" alt="" />
-			</a> <br>
-			<br>
-			<br> 광고2 <a href="#" target="_blank"> <img
+			</a> <br> <br> <br> 광고2 <a href="#" target="_blank"> <img
 				src="/images/ad-2.png" alt="" />
 			</a>
 		</div>
 		<!-- 		가운데     	-->
 		<div class="center">
-			<%if(flag.equals("background")){ %>
+			<%
+			if (flag.equals("qna")) {
+			%>
+			<%@ include file="./qna.jsp"%>
+			<%
+			} else if (flag.equals("download")) {
+			%>
+			<%@ include file="./download.jsp"%>
+			<%
+			} else if (flag.equals("history")) {
+			%>
+			<%@ include file="./history.jsp"%>
+			<%
+			} else if (flag.equals("background")) {
+			%>
 			<%@ include file="./background.jsp"%>
-			<%}else if(flag.equals("myComment")){ %>
+			<%
+			} else if (flag.equals("myComment")) {
+			%>
 			<%@ include file="./commentMenu.jsp"%>
-			<%}else if(flag.equals("addMoney")){ %>
+			<%
+			} else if (flag.equals("addMoney")) {
+			%>
 			<%@ include file="./addMoney.jsp"%>
-			<%}else if(flag.equals("shoppingUpdate")){ %>
+			<%
+			} else if (flag.equals("shoppingUpdate")) {
+			%>
 			<%@ include file="./shoppingUpdate.jsp"%>
 			<%
-			}else if(flag.equals("myPagePurchaseList")){
+			} else if (flag.equals("myPagePurchaseList")) {
 			%>
 			<%@ include file="./myPagePurchaseList.jsp"%>
 			<%
-			}else	if(flag.equals("myPage")){
+			} else if (flag.equals("myPage")) {
 			%>
 			<%@ include file="./myPageMenu.jsp"%>
 			<%
-			}else if(flag.equals("shop")){
+			} else if (flag.equals("shop")) {
 			%>
 			<%@ include file="./shoppingMenu.jsp"%>
-			<%	
-			}else if (flag.equals("regform")) {
+			<%
+			} else if (flag.equals("regform")) {
 			%>
 			<%@ include file="./regForm.jsp"%>
-			<%	
-			}else if (flag.equals("newProduct")) {
+			<%
+			} else if (flag.equals("newProduct")) {
 			%>
 			<%@ include file="./productAddForm.jsp"%>
-			<%//회원정보변경화면을 메인에 띄운다
+			<%
+			//회원정보변경화면을 메인에 띄운다
 			} else if (flag.equals("memberChange")) {
 			%>
 			<%@ include file="./memberChange.jsp"%>
@@ -553,7 +626,7 @@ div.right {
 			<%
 			} else if (flag.equals("product")) {
 			%>
-				<%@ include file="./shoppingProduct.jsp"%>
+			<%@ include file="./shoppingProduct.jsp"%>
 			<%
 			} else if (tableflag.equals("none")) {
 			%>
@@ -593,9 +666,12 @@ div.right {
 				} else if (session != null) {
 				%>
 				<%@ include file="./loginComplete.jsp"%>
-				<%}%>
+				<%
+				}
+				%>
 			</div>
-			<br><br><br><br><br><br><br><br><br><br><br><br>
+			<br> <br> <br> <br> <br> <br> <br>
+			<br> <br> <br> <br> <br>
 			<%@ include file="./calendar.jsp"%>
 
 

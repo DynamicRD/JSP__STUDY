@@ -8,7 +8,6 @@
 				<div class="dropdown-content">
 					<a href="mainPage.jsp?flag=background">배경</a> 
 					<a href="mainPage.jsp?flag=history">역사</a> 
-					<a href="mainPage.jsp?flag=vision">비전</a>
 				</div></li>
 			<li class="dropdown">
 				<a href="#" class="dropbtn">서비스</a>
@@ -19,12 +18,12 @@
 			<li class="dropdown">
 				<a href="#" class="dropbtn">자료실</a>
 				<div class="dropdown-content">
-					<a href="#">게시판로그</a> <a href="#">자료공유</a>
+					<a href="mainPage.jsp?flag=download">주요자료</a>
 				</div></li>
 			<li class="dropdown">
 				<a href="#" class="dropbtn">고객센터</a>
 				<div class="dropdown-content">
-					<a href="#">Q&A</a>
+					<a href="mainPage.jsp?flag=qna">Q&A</a>
 				</div></li>
 		</ul>
 		<p>

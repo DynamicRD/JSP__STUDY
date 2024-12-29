@@ -12,7 +12,7 @@
 ### ⚙️ 개발 환경
 - `Java`
 - `JDK-21.0.4`
-- `Tomcat 9.0 Server
+- `Tomcat 9.0 Server`
 - **IDE** : Eclipse
 - **Database**: Oracle DB (23c Express Edition)
 - **SQL Developer**: Version 23.1

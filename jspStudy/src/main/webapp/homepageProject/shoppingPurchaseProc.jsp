@@ -13,23 +13,23 @@ String name = request.getParameter("productName");
 String imgUrl = request.getParameter("productImgUrl");
 String amount = request.getParameter("productAmount");
 String shopAmount = request.getParameter("productShopAmount");
-String id = (String)session.getAttribute("id");
+String id = (String) session.getAttribute("id");
 
-if (id ==null || pNum ==null || price== null) {
+if (id == null || pNum == null || price == null) {
 %>
 <script>
 	alert("장바구니 등록에 실패했습니다");
 	history.go(-1);
 </script>
 <%
-}else if( (Integer.parseInt(shopAmount))<(Integer.parseInt(amount))){
+} else if ((Integer.parseInt(shopAmount)) < (Integer.parseInt(amount))) {
 %>
 <script>
 	alert("구매하시려는 양이 재고보다 많습니다");
 	history.go(-1);
 </script>
-<% 	
-}else{
+<%
+} else {
 bvo.setpNum((Integer.parseInt(pNum)));
 bvo.setPrice((Integer.parseInt(price)));
 bvo.setName(name);

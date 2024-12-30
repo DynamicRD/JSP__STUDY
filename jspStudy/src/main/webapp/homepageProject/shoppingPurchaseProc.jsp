@@ -29,7 +29,7 @@ if (id ==null || pNum ==null || price== null) {
 	history.go(-1);
 </script>
 <% 	
-}
+}else{
 bvo.setpNum((Integer.parseInt(pNum)));
 bvo.setPrice((Integer.parseInt(price)));
 bvo.setName(name);
@@ -58,5 +58,6 @@ if (flag) {
 	history.go(-1);
 </script>
 <%
+}
 }
 %>

@@ -26,6 +26,13 @@
         </div>
 
         <div class="faq-item">
+            <strong>Q: 회원가입을 하지 않아도 게시판을 이용할수 있나요?</strong>
+            <div class="answer">
+                A: 네 비회원도 게시판 작성과 댓글 작성이 가능합니다. 비밀번호를 입력하면 수정과 삭제가 가능합니다.
+            </div>
+        </div>
+
+        <div class="faq-item">
             <strong>Q: 쇼핑몰 페이지를 어떻게 찾아야 할까요?</strong>
             <div class="answer">
                 A: 홈페이지 상단에 서비스를 누르시면 쇼핑몰로 이동할수 있습니다.
@@ -43,6 +50,13 @@
             <strong>Q: 결제 방법은 무엇인가요?</strong>
             <div class="answer">
                 A: 금액을 충전하시면 비용에서 차감됩니다. 금액은 마이페이지에서 충전하실 수 있습니다.
+            </div>
+        </div>
+        
+        <div class="faq-item">
+            <strong>Q: 자료실의 자료는 무엇인가요?</strong>
+            <div class="answer">
+                A: 홈페이지를 개발할때 사용했던 프로그램들입니다.
             </div>
         </div>
         

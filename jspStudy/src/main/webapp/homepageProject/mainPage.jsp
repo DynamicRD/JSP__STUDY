@@ -34,7 +34,7 @@ if (tableflag == null) {
 
 body {
 	display: flex;
-	background-color: #f4f4f4;
+	background-color: #f0f2f5; /* 부드러운 회색 배경 */
 	text-align: center;
 	flex-direction: column;
 }
@@ -54,7 +54,7 @@ main {
 }
 
 .login_block {
-	background-color: #A1E8B4;
+	background-color: #D6F5D6; /* 부드러운 초록색 */
 	padding: 20px;
 	border-radius: 8px;
 	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -62,7 +62,7 @@ main {
 
 TD, SELECT, .search {
 	font-size: 14px;
-	color: #333;
+	color: #4B4B4B; /* 차분한 그레이 */
 	line-height: 1.6;
 	padding: 10px;
 	background-color: #fff;
@@ -72,7 +72,7 @@ TD, SELECT, .search {
 
 .search {
 	font-size: 14px;
-	color: #333;
+	color: #4B4B4B;
 	line-height: 1.4;
 	padding: 10px;
 	background-color: #fff;
@@ -92,28 +92,32 @@ ul>li {
 }
 
 .header {
-	border: 1px solid #ddd;
-	width: 1500px;
-	height: 100px;
-	display: flex;
-	flex-direction: row;
-	font-size: 20px;
-	text-align: center;
-	justify-content: space-between;
-	align-items: center;
-	padding: 20px 30px;
-	background-color: #F7F8E0;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-	margin: 0 auto;
-	border-radius: 8px;
+    border: 1px solid #ddd;
+    width: 1500px;
+    height: 100px;
+    display: flex;
+    flex-direction: row;
+    font-size: 22px;
+    text-align: center;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 30px;
+    background-color: #E5F1F4; /* 차분한 파스텔 블루 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+    border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
 .header ul>li>a {
 	display: inline-block;
 	width: 180px;
 	padding: 12px;
 	text-align: center;
-	background-color: #f0f0f0;
+	background-color: #F2F6F9; /* 라이트 그레이 */
 	border-radius: 4px;
 	font-weight: 500;
 	color: #333;
@@ -121,38 +125,46 @@ ul>li {
 }
 
 .header ul>li:hover>a {
-	background-color: #007bff;
+	background-color: #3498db; /* 세련된 파란색 */
 	color: #fff;
 }
 
 .dropdown {
-	position: relative;
+    position: relative;
 }
 
 div.dropdown-content {
-	display: none;
-	position: absolute;
-	background-color: #E6F8E0;
-	min-width: 160px;
-	z-index: 2;
-	box-shadow: 0 8px 16px rgba(66, 68, 90, 0.2);
-	border-radius: 4px;
+    display: none;
+    position: absolute;
+    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+    min-width: 160px;
+    z-index: 2;
+    box-shadow: 0 8px 16px rgba(66, 68, 90, 0.2);
+    border-radius: 8px;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 div.dropdown-content a {
-	display: block;
-	padding: 12px;
-	color: #333;
-	text-decoration: none;
-	transition: background-color 0.3s;
+    display: block;
+    padding: 12px;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.3s, padding-left 0.3s;
+    padding-left: 20px;
 }
 
 div.dropdown-content a:hover {
-	background-color: #9AFE2E;
+    background-color: rgba(255, 255, 255, 0.2);
+    padding-left: 25px;
 }
 
 .dropdown:hover .dropdown-content {
-	display: block;
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
 }
 
 div.slideshow {
@@ -238,7 +250,7 @@ div.shlideshow_indicator a.active {
 
 div.left, div.center, div.right {
 	border: 1px solid #ddd;
-	background-color: #F7F8E0;
+	background-color: #E8F6F3; /* 라이트 민트 그린 */
 	padding: 20px;
 	border-radius: 8px;
 }
@@ -263,7 +275,7 @@ div.left {
 	margin: 0 auto;
 	border: 1px solid #ddd;
 	width: 250px;
-	height: auto;;
+	height: auto;
 	margin-bottom: 30px;
 	border-radius: 8px;
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -292,8 +304,7 @@ div.center {
 	color: #333;
 }
 
-.maintable .num, .maintable .writer, .maintable .day, .maintable .recommend
-	{
+.maintable .num, .maintable .writer, .maintable .day, .maintable .recommend {
 	width: 100px;
 }
 
@@ -313,29 +324,29 @@ div.center {
 }
 
 .lightgrey {
-	background-color: lightgrey;
+	background-color: #f1f1f1; /* 부드러운 회색 */
 }
 
 .lightgreen {
-	background-color: #CEF6F5;
+	background-color: #D1F7E2; /* 연한 초록색 */
 }
 
 .shopMenuImg {
 	width: 150px;
 	height: 200px;
-	object-fit: cover; /* 이미지 비율을 유지하면서 영역에 맞게 잘라냄 */
+	object-fit: cover;
 }
 
 .shopProductImg {
 	width: 400px;
 	height: 600px;
-	object-fit: cover; /* 이미지 비율을 유지하면서 영역에 맞게 잘라냄 */
+	object-fit: cover;
 }
 
 .myPageShopImg {
 	width: 100px;
 	height: 150px;
-	object-fit: cover; /* 이미지 비율을 유지하면서 영역에 맞게 잘라냄 */
+	object-fit: cover;
 }
 
 .myPageMenu {
@@ -357,20 +368,18 @@ div.center {
 	transition: color 0.3s ease;
 }
 
-/* 아이콘 크기 및 위치 */
 .myPageMenu i {
 	font-size: 22px;
 	margin-right: 10px;
 }
 
-/* 호버 효과 */
 .myPageMenu:hover {
 	background-color: #f0f0f0;
-	transform: translateY(-3px); /* 살짝 떠오르는 효과 */
+	transform: translateY(-3px);
 }
 
 .myPageMenu:hover a {
-	color: #007BFF;
+	color: #3498db;
 }
 
 .section {
@@ -396,7 +405,7 @@ div.center {
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 	margin: 20px 0;
 	display: flex;
-	flex-direction: colu
+	flex-direction: column;
 }
 
 .faq {
@@ -445,7 +454,7 @@ div.right {
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
-	background-color: #A1E8B4;
+	background-color: #A8D8C9; /* 세련된 민트 색상 */
 	border-radius: 8px;
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -469,7 +478,7 @@ div.right {
 }
 
 .login_block input:focus {
-	border-color: #007bff;
+	border-color: #3498db; /* 세련된 파란색 */
 }
 
 .login tr, td, th {
@@ -479,7 +488,7 @@ div.right {
 .footer {
 	margin: 20px auto;
 	width: 1400px;
-	background-color: #F7F8E0;
+	background-color: #F1E2B7; /* 부드러운 연한 노란색 */
 	height: 300px;
 	color: white;
 	display: flex;
@@ -489,7 +498,6 @@ div.right {
 	padding: 20px;
 	border-radius: 8px;
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-	justify-content: center;
 }
 
 .footer p {
@@ -503,10 +511,12 @@ div.right {
 	padding: 10px;
 	text-align: center;
 	font-family: Arial, sans-serif;
+	background-color: #F9FAFB; /* 부드러운 회색 배경 */
 }
 
 .calendar h3 {
 	margin: 10px 0;
+	color: #333; /* 어두운 회색 텍스트 */
 }
 
 .calendar table {
@@ -523,7 +533,7 @@ div.right {
 }
 
 .calendar table th {
-	background-color: #f4f4f4;
+	background-color: #E9F1F5; /* 부드러운 파스텔 블루 */
 }
 
 .calendar table td {
@@ -531,7 +541,7 @@ div.right {
 }
 
 .calendar .current-day {
-	background-color: #ffeb3b;
+	background-color: #ffeb3b; /* 밝은 노란색 */
 }
 
 .links-container {

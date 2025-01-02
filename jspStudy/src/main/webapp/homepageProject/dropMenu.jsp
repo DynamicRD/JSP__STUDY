@@ -27,6 +27,6 @@
 				</div></li>
 		</ul>
 		<p>
-			<a href=""><i class="fa-brands fa-facebook"></i></a> <a href="">
-			<i class="fa-solid fa-dove"></i></a>
+			<a href="https://www.facebook.com/?locale=ko_KR"><i class="fa-brands fa-facebook"></i></a> 
+			<a href="https://x.com/?lang=ko&mx=2"><i class="fa-brands fa-x-twitter"></i></a>
 		</p>

@@ -138,7 +138,6 @@ number = count - (currentPage - 1) * pageSize;
 		<%
 		}
 		%>
-		<!-- 수정 <7> -->
 	</main>
 	<br>
 <div  align="center">

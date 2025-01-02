@@ -142,16 +142,6 @@ cNumber = (cCurrentPage - 1) * cPageSize +1;
             <%
 						//댓글 바로아래 다는 기능            
             if(comment.equals("yes")&&cNumber==commentNum){
-            	 // 새로운 글로 입력(num=0, ref=0, step=0, depth=0)
-            	 // 부모글에 대한 답변으로 입력(num=부모값, ref=부모값, step=부모값, depth=부모값)
-            	/*  int cNum = 0, cRef = 1, cStep = 0, cDepth = 0; */
-            	 
-            	     if (request.getParameter("cNum") != null) {
-            	        /*  cNum = Integer.parseInt(request.getParameter("cNum"));
-            	         cRef = Integer.parseInt(request.getParameter("cRef"));
-            	         cStep = Integer.parseInt(request.getParameter("cStep"));
-            	         cDepth = Integer.parseInt(request.getParameter("cDepth")); */
-            	     }
             	%>
             	<%if(myId == null){%>
             	    <form method="post" name="cWriteForm" action="commentWriteProc.jsp?commentPage=<%=numInt%>" onsubmit="return writeSave()">

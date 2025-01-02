@@ -23,7 +23,7 @@ try {
 		<input type="hidden" name="ref" value="<%=ref%>"> 
 		<input type="hidden" name="step" value="<%=step%>"> 
 		<input type="hidden" name="depth" value="<%=depth%>">
-		<table width="500"   cellpadding="0" cellspacing="0" align="center">
+		<table width="700"   cellpadding="0" cellspacing="0" align="center">
 			<tr>
 				<td align="right" colspan="2"   class="lightgrey" ><a
 					href="mainPage.jsp">글목록</a></td>
@@ -39,17 +39,6 @@ try {
 				<%} %>
 				</td>
 			</tr>
-<%-- 	<tr>
-				<td width="70" align="center">이메일</td>
-				<td width="330"  align="left" >
-				<%if(session.getAttribute("id")!=null){%>
-						<input type="hidden" size="30" maxlength="30" name="email" value="<%=session.getAttribute("email")%>" />
-				<%=session.getAttribute("email")%>
-				<%}else{ %>
-						<input type="text" size="30" maxlength="30" name="email" />
-				<%} %>		
-				</td>
-			</tr>  --%>
 			<tr>
 				<td width="70" align="center"   class="lightgrey" >제목</td>
 				<td width="330" align="left"  bgcolor="white" >
@@ -67,7 +56,7 @@ try {
 			</tr>
 			<tr>
 				<td width="70" align="center"   class="lightgrey" >내용</td>
-				<td width="330" align="left"  bgcolor="white" ><textarea name="content" rows="13" cols="50"></textarea>
+				<td width="330" align="left"  bgcolor="white" ><textarea name="content" rows="13" cols="80"></textarea>
 				</td>
 			</tr>
 			<%if(session.getAttribute("id")==null){%>

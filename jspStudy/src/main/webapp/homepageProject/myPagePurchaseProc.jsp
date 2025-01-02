@@ -12,7 +12,7 @@ String id = (String) session.getAttribute("id");
 if (totalPrice == null || id == null) {
 %>
 <script>
-	alert("오류가 발생해서 삭제 실패했습니다");
+	alert("세션이 초기화되어 결재 실패했습니다");
 	window.location.href = "mainPage.jsp?flag=myPagePurchaseList";
 	history.go(-1);
 </script>

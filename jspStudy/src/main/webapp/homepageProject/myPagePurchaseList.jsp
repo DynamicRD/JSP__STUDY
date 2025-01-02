@@ -104,7 +104,6 @@ int productPrice = 0;
 		<%
 		}
 		%>
-		<!-- 수정 <7> -->
 	</main>
 <br>
 <div>

@@ -42,7 +42,6 @@ boolean flag = bdao.insertDB(bvo);
 ProductsDAO pdao = ProductsDAO.getInstance();
 boolean purchaseFlag = pdao.updatePurchaseDB((Integer.parseInt(amount)), (Integer.parseInt(pNum)));
 %>
-<!-- 3.화면출력한다 -->
 <%
 if (flag) {
 %>

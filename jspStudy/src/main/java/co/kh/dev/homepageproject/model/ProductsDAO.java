@@ -27,7 +27,6 @@ public class ProductsDAO {
 		return instance;
 	}
 
-	private final String SELECT_SQL = "select * from Products order by num desc";
 	private final String SELECT_START_END_SQL = " select * from "
 		    + "(select rownum AS rnum, num, name, regdate, price, amount, tag, imgUrl, content "
 		    + " from (select * from Products order by num desc)) "
@@ -40,22 +39,15 @@ public class ProductsDAO {
 		    + "(select rownum AS rnum, num, name, regdate, price, amount, tag, imgUrl, content "
 		    + " from (select * from Products order by num desc)) "
 		    + "where rnum >= ? and rnum <= ? and tag like ?";
-	private final String SELECT_ADMIN_START_END_SQL = "SELECT * FROM Products WHERE writer LIKE '%(관리자)'";
 	private final String SELECT_COUNT_SQL = "select count(*) as count from Products";
 	private final String SELECT_COUNT_NAME_SQL = "SELECT COUNT(*) AS count FROM Products WHERE NAME LIKE ?";
 	private final String SELECT_COUNT_TAG_SQL = "SELECT COUNT(*) AS count FROM Products WHERE TAG LIKE ?";
-	private final String SELECT_COUNT_CONTENT_SQL = "SELECT COUNT(*) AS count FROM Products WHERE content LIKE ?";
-	private final String SELECT_ADMIN_COUNT_SQL = "select count(*) as count from Products WHERE writer LIKE '%(관리자)'";
 	private final String SELECT_ONE_SQL = "select * from Products where num = ?";
-	private final String SELECT_PASS_ID_CHECK_SQL = "select count(*) count from Products where num = ? and pass = ?";
 	private final String DELETE_SQL = "DELETE FROM Products WHERE NUM = ?";
-	private final String DELETE_ADMIN_SQL = "DELETE FROM Products WHERE NUM = ?";
 	private final String UPDATE_PURCHASE_SQL = "update Products set amount = amount - ? where num=?";
 	private final String UPDATE_RECALL_SQL = "update Products set amount = amount + ? where num=?";
 	private final String INSERT_SQL = "INSERT INTO products (num,name, price, amount, tag, content, imgUrl, REGDATE) VALUES (commentmember_SEQ.nextval,?, ?, ?, ?, ?, ?, ?)";
 	private final String UPDATE_SQL = "UPDATE products SET name = ?, price = ?, amount = ?, tag = ?, content = ?, imgUrl = ?, REGDATE = ? WHERE num = ?";
-	private final String ADD_COMMENT_READCOUNT_SQL = "update Products set comments = comments + 1 where num = ?";
-	private final String DOWN_COMMENT_READCOUNT_SQL = "update Products set comments = comments - 1 where num = ?";
 	
 	
 	
@@ -144,61 +136,6 @@ public class ProductsDAO {
 		}
 		return count;
 	}
-	/*
-	public int selectAdminCountDB() {
-		ConnectionPool cp = ConnectionPool.getInstance();
-		Connection con = cp.dbCon();
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		int count = 0;
-		try {
-			pstmt = con.prepareStatement(SELECT_ADMIN_COUNT_SQL);
-			rs = pstmt.executeQuery();
-			if (rs.next()) {
-				count = rs.getInt("count");
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			cp.dbClose(con, pstmt, rs);
-		}
-		return count;
-	}
-
-	public ArrayList<ProductsVO> selectDB() {
-		ConnectionPool cp = ConnectionPool.getInstance();
-		Connection con = cp.dbCon();
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		ArrayList<ProductsVO> ProductsList = new ArrayList<ProductsVO>();
-		try {
-			pstmt = con.prepareStatement(SELECT_SQL);
-			rs = pstmt.executeQuery();
-			while (rs.next()) {
-				int num = rs.getInt("num");
-				String writer = rs.getString("writer");
-				String subject = rs.getString("subject");
-				String pass = rs.getString("pass");
-				Timestamp regdate = rs.getTimestamp("regdate");
-				int readcount = rs.getInt("readcount");
-				int ref = rs.getInt("ref");
-				int step = rs.getInt("step");
-				int depth = rs.getInt("depth");
-				String content = rs.getString("content");
-				String ip = rs.getString("ip");
-				ProductsVO vo = new ProductsVO(num, writer, subject, pass, readcount, ref, step, depth, regdate,
-						content, ip);
-				ProductsList.add(vo);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			cp.dbClose(con, pstmt, rs);
-		}
-		return ProductsList;
-	}
-
-*/
 	public ProductsVO selectProductsDB(ProductsVO vo) {
 		ConnectionPool cp = ConnectionPool.getInstance();
 		Connection con = cp.dbCon();
@@ -229,43 +166,6 @@ public class ProductsDAO {
 		return bvo;
 	}
 
-	/*
-	public ProductsVO selectProductsOneDB(ProductsVO vo) {
-		ConnectionPool cp = ConnectionPool.getInstance();
-		Connection con = cp.dbCon();
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		ProductsVO bvo = null;
-		int count = 0;
-		try {
-			// 글 전체내용 조회
-			pstmt = con.prepareStatement(SELECT_ONE_SQL);
-			pstmt.setInt(1, vo.getNum());
-			rs = pstmt.executeQuery();
-			if (rs.next()) {
-				int num = rs.getInt("num");
-				String writer = rs.getString("writer");
-				String subject = rs.getString("subject");
-				String pass = rs.getString("pass");
-				Timestamp regdate = rs.getTimestamp("regdate");
-				int readcount = rs.getInt("readcount");
-				int ref = rs.getInt("ref");
-				int step = rs.getInt("step");
-				int depth = rs.getInt("depth");
-				String content = rs.getString("content");
-				String ip = rs.getString("ip");
-				bvo = new ProductsVO(num, writer, subject, pass, readcount, ref, step, depth, regdate, content, ip);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			cp.dbClose(con, pstmt, rs);
-		}
-		return bvo;
-	}
-
-	
-*/	
 	
 	public ArrayList<ProductsVO> selectStartEndDB(int start, int end,ProductsVO bvo) {
 		ConnectionPool cp = ConnectionPool.getInstance();
@@ -320,80 +220,6 @@ public class ProductsDAO {
 		return ProductsList;
 	}
 	
-/*	
-	public ArrayList<ProductsVO> selectAdminStartEndDB() {
-		ConnectionPool cp = ConnectionPool.getInstance();
-		Connection con = cp.dbCon();
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		ArrayList<ProductsVO> ProductsList = new ArrayList<ProductsVO>();	//arrayList갯수정해줌
-		try {
-			pstmt = con.prepareStatement(SELECT_ADMIN_START_END_SQL);
-			rs = pstmt.executeQuery();
-			while (rs.next()) {
-				String subject = rs.getString("subject");
-				int num = rs.getInt("num");
-				ProductsVO vo = new ProductsVO();
-				vo.setNum(num);
-				vo.setSubject(subject);
-				ProductsList.add(vo);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			cp.dbClose(con, pstmt, rs);
-		}
-		return ProductsList;
-	}
-
-
-	public int updateDB(ProductsVO vo) {
-		// 1: 성공, 2. 패스워드문제, 3 수정문제
-		ConnectionPool cp = ConnectionPool.getInstance();
-		Connection con = cp.dbCon();
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		int passCheckCount = 0;
-		int count = 0;
-		int returnValue = 1;
-
-		// 패스워드가 맞는지 점검필요
-		try {
-			pstmt = con.prepareStatement(SELECT_PASS_ID_CHECK_SQL);
-			pstmt.setInt(1, vo.getNum());
-			pstmt.setString(2, vo.getPass());
-			rs = pstmt.executeQuery();
-			if (rs.next()) {
-				passCheckCount = rs.getInt("COUNT");
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		if (passCheckCount != 0) {
-			try {
-				pstmt = con.prepareStatement(UPDATE_SQL);
-				pstmt.setString(1, vo.getWriter());
-				pstmt.setString(2, vo.getSubject());
-				pstmt.setString(3, vo.getContent());
-				pstmt.setInt(4, vo.getNum());
-				count = pstmt.executeUpdate();
-				if (count == 0)
-					returnValue = 3;
-				else
-					returnValue = 1;
-			} catch (SQLException e) {
-				e.printStackTrace();
-			} finally {
-				cp.dbClose(con, pstmt);
-			}
-		} else {
-			returnValue = 2;
-		}
-		return returnValue;
-	}
-*/	
 	public boolean updatePurchaseDB(int purchase,int num) {
 		// 1: 성공, 2. 패스워드문제, 3 수정문제
 		ConnectionPool cp = ConnectionPool.getInstance();
@@ -451,37 +277,5 @@ public class ProductsDAO {
 		}
 		return (count!=0)?(true):(false);
 	}
-/*	
-	public void commentAddDB(ProductsVO vo) {
-		ConnectionPool cp = ConnectionPool.getInstance();
-		Connection con = cp.dbCon();
-		PreparedStatement pstmt = null;
-		int count=0;
-		
-		try {
-			pstmt = con.prepareStatement(ADD_COMMENT_READCOUNT_SQL);
-			pstmt.setInt(1, vo.getNum());
-			count = pstmt.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	public void commentDownDB(ProductsVO vo) {
-		ConnectionPool cp = ConnectionPool.getInstance();
-		Connection con = cp.dbCon();
-		PreparedStatement pstmt = null;
-		int count=0;
-		
-		try {
-			pstmt = con.prepareStatement(DOWN_COMMENT_READCOUNT_SQL);
-			pstmt.setInt(1, vo.getNum());
-			count = pstmt.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	*/
 
 }

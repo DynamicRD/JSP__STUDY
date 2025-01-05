@@ -36,7 +36,7 @@
 
 - ** 이미지 슬라이드쇼**
   - 일정 시간마다 이미지가 전환되고 버튼을 눌러서 원하는대로 이미지 전환이 가능한 슬라이드쇼
-    ```javascript
+```javascript
   function carousel(){
     //화면객체 가져온다.
     let slideshow = document.querySelector(".slideshow");
@@ -143,7 +143,7 @@
      });
     });
  }
-    ```
+```
     
 - ** 답변형 댓글 게시판**
   - num,step,depth,ref를 활용한을 활용하여 답변한 위치에 따라 댓글의 순서와 위치가 달라지는 댓글작성DAO

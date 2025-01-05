@@ -37,6 +37,7 @@
 ** 이미지 슬라이드쇼**
 <details>
 <summary>- 일정 시간마다 이미지가 전환되고 버튼을 눌러서 원하는대로 이미지 전환이 가능한 슬라이드쇼</summary>
+	
 ```javascript
   function carousel(){
     //화면객체 가져온다.

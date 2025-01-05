@@ -58,15 +58,19 @@ public class CommentMemberDAO {
 		int bcount = 0;
 		int highstep =0;
 		try {
-			pstmt = con.prepareStatement(SELECT_COUNT_BNUM_SQL);
-			pstmt.setInt(1, vo.getBnum());
-			rs = pstmt.executeQuery();
-			if (rs.next()) {
-				bcount = rs.getInt("count")+1;
-			}
+		    pstmt = con.prepareStatement(SELECT_COUNT_BNUM_SQL);
+		    pstmt.setInt(1, vo.getBnum());
+		    rs = pstmt.executeQuery();
+		    if (rs.next()) {
+		        bcount = rs.getInt("count") + 1;
+		    } else {
+		        // 쿼리 결과가 없는 경우 처리
+		        bcount = 1; // 기본값 설정
+		    }
 		} catch (SQLException e) {
-			e.printStackTrace();
-		} 
+		    System.out.println("Error executing SELECT_COUNT_BNUM_SQL: " + e.getMessage());
+		    e.printStackTrace();
+		}
 		// num 현재 보드속에 가장최고값에 +1, 값이 하나도 없으면 1
 		try {
 			pstmt = con.prepareStatement(SELECT_MAX_NUM_SQL);

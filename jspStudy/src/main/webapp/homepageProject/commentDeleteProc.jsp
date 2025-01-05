@@ -10,6 +10,12 @@ String truePass = request.getParameter("truePass");
 String returnPage = request.getParameter("returnPage");
 String admincheck = (String)session.getAttribute("id");
 int deleteNum = Integer.parseInt(request.getParameter("deleteNum"));
+if(truePass == null){
+	truePass = "none";
+}
+if(pass == null){
+	pass = "none";
+}
 %>
 <% 
 if (pass.equals(truePass) || (session.getAttribute("id")!= null && admincheck.equals("admin"))) {

@@ -34,9 +34,11 @@
 
 ### ⌨ 주요 구현 기능
 
-- ** 이미지 슬라이드쇼**
-  - 일정 시간마다 이미지가 전환되고 버튼을 눌러서 원하는대로 이미지 전환이 가능한 슬라이드쇼
-    ```javascript
+** 이미지 슬라이드쇼**
+<details>
+<summary>- 일정 시간마다 이미지가 전환되고 버튼을 눌러서 원하는대로 이미지 전환이 가능한 슬라이드쇼</summary>	
+	
+```javascript
   function carousel(){
     //화면객체 가져온다.
     let slideshow = document.querySelector(".slideshow");
@@ -143,11 +145,16 @@
      });
     });
  }
-    ```
-    
-- ** 답변형 댓글 게시판**
-  - num,step,depth,ref를 활용한을 활용하여 답변한 위치에 따라 댓글의 순서와 위치가 달라지는 댓글작성DAO
-    ```java
+ 
+```
+</details>
+
+
+** 답변형 댓글 게시판**
+<details>
+<summary>- num,step,depth,ref를 활용한을 활용하여 답변한 위치에 따라 댓글의 순서와 위치가 달라지는 댓글작성DAO</summary>	
+	
+```java
   private final String SELECT_START_END_BNUM_SQL = " select * from "
 		+ "(select rownum AS rnum, num,numref,b_num, writer, pass, regdate, ref, step, depth, content, ip "
 		+ "from (select * from CommentMember order by ref desc, step desc)) where numref>=? and numref<=? and b_num = ?";
@@ -236,11 +243,16 @@
 		}
 		return (count > 0) ? true : false;
 	}
-    ```
 
-- ** 쇼핑몰 상품 출력**
-  - 가로 최대 4개, 세로2개 최대 8개씩 상품을 출력하고 9개 이상부턴 페이지 이동으로 다른 상품을 출력가능하며 제목과 태그에 따라 검색이 가능한 홈쇼핑 페이지
-    ```jsp
+```
+</details>
+
+
+** 쇼핑몰 상품 출력**
+<details>
+<summary>  - 가로 최대 4개, 세로2개 최대 8개씩 상품을 출력하고 9개 이상부턴 페이지 이동으로 다른 상품을 출력가능하며 제목과 태그에 따라 검색이 가능한 홈쇼핑 페이지</summary>
+	
+```jsp
   <%@page import="co.kh.dev.homepageproject.model.ProductsDAO"%>
 <%@page import="co.kh.dev.homepageproject.model.ProductsVO"%>
 <%@page import="java.util.ArrayList"%>
@@ -424,11 +436,16 @@ number = count - (currentPage - 1) * pageSize;
 		<input class="search" type="submit" value="검색"> 
 		</form>
 </div>
-    ```
-   
- - ** 장바구니 처리 PROCEDURE**
-  - 현재 로그인세션의 유무, 잔액, DB오류등을 체크해서 성공시 사용자의 금액을 줄이고 회원가입시 입력했던 주소로 상품배송하는 PROCEDURE
-    ```jsp
+
+```
+</details> 
+
+
+** 장바구니 처리 PROCEDURE**
+<details>
+<summary>  - 현재 로그인세션의 유무, 잔액, DB오류등을 체크해서 성공시 사용자의 금액을 줄이고 회원가입시 입력했던 주소로 상품배송하는 PROCEDURE</summary>
+	
+```jsp
 <%@page import="co.kh.dev.homepageproject.model.MemberVO"%>
 <%@page import="co.kh.dev.homepageproject.model.MemberDAO"%>
 <%@page import="co.kh.dev.homepageproject.model.ProductsVO"%>
@@ -492,7 +509,8 @@ if (check && check2) {
 }
 }
 %>
-    ```   
+```
+</details>   
 
 
 ### 📊 ERD 다이어그램

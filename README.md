@@ -149,7 +149,9 @@
 ```
     
 - ** 답변형 댓글 게시판**
-  - num,step,depth,ref를 활용한을 활용하여 답변한 위치에 따라 댓글의 순서와 위치가 달라지는 댓글작성DAO
+<details>
+<summary>- num,step,depth,ref를 활용한을 활용하여 답변한 위치에 따라 댓글의 순서와 위치가 달라지는 댓글작성DAO</summary>
+	
 ```java
   private final String SELECT_START_END_BNUM_SQL = " select * from "
 		+ "(select rownum AS rnum, num,numref,b_num, writer, pass, regdate, ref, step, depth, content, ip "
@@ -239,10 +241,13 @@
 		}
 		return (count > 0) ? true : false;
 	}
+</details>
 ```
 
 - ** 쇼핑몰 상품 출력**
-  - 가로 최대 4개, 세로2개 최대 8개씩 상품을 출력하고 9개 이상부턴 페이지 이동으로 다른 상품을 출력가능하며 제목과 태그에 따라 검색이 가능한 홈쇼핑 페이지
+<details>
+<summary>  - 가로 최대 4개, 세로2개 최대 8개씩 상품을 출력하고 9개 이상부턴 페이지 이동으로 다른 상품을 출력가능하며 제목과 태그에 따라 검색이 가능한 홈쇼핑 페이지</summary>
+	
 ```jsp
   <%@page import="co.kh.dev.homepageproject.model.ProductsDAO"%>
 <%@page import="co.kh.dev.homepageproject.model.ProductsVO"%>
@@ -427,10 +432,13 @@ number = count - (currentPage - 1) * pageSize;
 		<input class="search" type="submit" value="검색"> 
 		</form>
 </div>
+</details>
 ```
    
  - ** 장바구니 처리 PROCEDURE**
-  - 현재 로그인세션의 유무, 잔액, DB오류등을 체크해서 성공시 사용자의 금액을 줄이고 회원가입시 입력했던 주소로 상품배송하는 PROCEDURE
+<details>
+<summary>  - 현재 로그인세션의 유무, 잔액, DB오류등을 체크해서 성공시 사용자의 금액을 줄이고 회원가입시 입력했던 주소로 상품배송하는 PROCEDURE</summary>
+	
 ```jsp
 <%@page import="co.kh.dev.homepageproject.model.MemberVO"%>
 <%@page import="co.kh.dev.homepageproject.model.MemberDAO"%>
@@ -495,6 +503,7 @@ if (check && check2) {
 }
 }
 %>
+</details>
 ```   
 
 

@@ -512,29 +512,6 @@ if (check && check2) {
 ```
 </details>   
 
-
-### 📊 ERD 다이어그램
-<img src="https://github.com/DynamicRD/JSP__STUDY/blob/dev/%ED%99%88%ED%8E%98%EC%9D%B4%EC%A7%80%20ERD.png" width="800"/>
-
-### 💻 실행 화면
-메인화면<br><br>
-<img src="https://github.com/DynamicRD/JSP__STUDY/blob/dev/%EB%A9%94%EC%9D%B8%ED%99%94%EB%A9%B4.png" width="800"/>
-<br><br>
-게시판답글<br><br>
-<img src="https://github.com/DynamicRD/JSP__STUDY/blob/dev/%EA%B2%8C%EC%8B%9C%ED%8C%90%EB%8B%B5%EA%B8%80.png" width="800"/>
-<br><br>
-쇼핑몰<br><br>
-<img src="https://github.com/DynamicRD/JSP__STUDY/blob/dev/%EC%87%BC%ED%95%91%EB%AA%B0.png" width="800"/>
-<br><br>
-장바구니<br><br>
-<img src="https://github.com/DynamicRD/JSP__STUDY/blob/dev/%EC%9E%A5%EB%B0%94%EA%B5%AC%EB%8B%88.png" width="800"/>
-<br><br>
-회원가입<br><br>
-<img src="https://github.com/DynamicRD/JSP__STUDY/blob/dev/%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85.png" width="800"/>
-<br><br>
-고객페이지<br><br>
-<img src="https://github.com/DynamicRD/JSP__STUDY/blob/dev/%EA%B3%A0%EA%B0%9D%ED%8E%98%EC%9D%B4%EC%A7%80.png" width="800"/>
-
 ### 📊 ERD 다이어그램
 <img src="https://github.com/DynamicRD/JSP__STUDY/blob/dev/%ED%99%88%ED%8E%98%EC%9D%B4%EC%A7%80%20ERD.png" width="800"/>
  

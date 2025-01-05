@@ -37,6 +37,7 @@
 ** 이미지 슬라이드쇼**
 <details>
 <summary>- 일정 시간마다 이미지가 전환되고 버튼을 눌러서 원하는대로 이미지 전환이 가능한 슬라이드쇼</summary>	
+	
 ```javascript
   function carousel(){
     //화면객체 가져온다.
@@ -152,6 +153,7 @@
 ** 답변형 댓글 게시판**
 <details>
 <summary>- num,step,depth,ref를 활용한을 활용하여 답변한 위치에 따라 댓글의 순서와 위치가 달라지는 댓글작성DAO</summary>	
+	
 ```java
   private final String SELECT_START_END_BNUM_SQL = " select * from "
 		+ "(select rownum AS rnum, num,numref,b_num, writer, pass, regdate, ref, step, depth, content, ip "
@@ -249,6 +251,7 @@
 ** 쇼핑몰 상품 출력**
 <details>
 <summary>  - 가로 최대 4개, 세로2개 최대 8개씩 상품을 출력하고 9개 이상부턴 페이지 이동으로 다른 상품을 출력가능하며 제목과 태그에 따라 검색이 가능한 홈쇼핑 페이지</summary>
+	
 ```jsp
   <%@page import="co.kh.dev.homepageproject.model.ProductsDAO"%>
 <%@page import="co.kh.dev.homepageproject.model.ProductsVO"%>

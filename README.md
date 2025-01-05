@@ -534,3 +534,89 @@ if (check && check2) {
 <br><br>
 고객페이지<br><br>
 <img src="https://github.com/DynamicRD/JSP__STUDY/blob/dev/%EA%B3%A0%EA%B0%9D%ED%8E%98%EC%9D%B4%EC%A7%80.png" width="800"/>
+
+### 💻 시연%
+request.setCharacterEncoding("utf-8");
+String totalPrice = request.getParameter("totalPrice");
+String id = (String) session.getAttribute("id");
+
+if (totalPrice == null || id == null) {
+%>
+<script>
+	alert("세션이 초기화되어 결재 실패했습니다");
+	window.location.href = "mainPage.jsp?flag=myPagePurchaseList";
+	history.go(-1);
+</script>
+<%
+} else {
+int totalPriceInt = Integer.parseInt(totalPrice);
+
+MemberDAO mdaoo = MemberDAO.getInstance();
+int money = mdaoo.selectMoney(id);
+
+if (money < totalPriceInt) {
+%>
+<script>
+	alert("잔액이 부족합니다!");
+	history.go(-1);
+  </script>
+<%
+} else {
+MemberVO mvvo = new MemberVO();
+mvvo.setId(id);
+mvvo.setMoney(totalPriceInt);
+boolean check = mdaoo.memberMinusMoney(mvvo);
+mvvo = mdaoo.selectOneDB(mvvo);
+String add1 = mvvo.getAddress1();
+String add2 = mvvo.getAddress2();
+
+BasketDAO bdao = BasketDAO.getInstance();
+boolean check2 = bdao.deleteIdDB(id);
+if (check && check2) {
+%>
+<script type="text/javascript">
+    var add1 = "<%= add1 %>";
+    var add2 = "<%= add2 %>";
+    alert(add1 + " " + add2 + "로 상품이 배송시작하였습니다. 구매해주셔서 감사합니다.");
+    window.location.href = "mainPage.jsp?flag=myPage"; // 알림창 후 로그인 페이지로 이동
+</script>
+<%
+} else {
+%>
+<script>
+	alert("오류가 발생해서 결제 실패했습니다");
+	history.go(-1);
+</script>
+<%
+}
+}
+}
+%>
+```
+</details>   
+
+
+### 📊 ERD 다이어그램
+<img src="https://github.com/DynamicRD/JSP__STUDY/blob/dev/%ED%99%88%ED%8E%98%EC%9D%B4%EC%A7%80%20ERD.png" width="800"/>
+
+### 💻 실행 화면
+메인화면<br><br>
+<img src="https://github.com/DynamicRD/JSP__STUDY/blob/dev/%EB%A9%94%EC%9D%B8%ED%99%94%EB%A9%B4.png" width="800"/>
+<br><br>
+게시판답글<br><br>
+<img src="https://github.com/DynamicRD/JSP__STUDY/blob/dev/%EA%B2%8C%EC%8B%9C%ED%8C%90%EB%8B%B5%EA%B8%80.png" width="800"/>
+<br><br>
+쇼핑몰<br><br>
+<img src="https://github.com/DynamicRD/JSP__STUDY/blob/dev/%EC%87%BC%ED%95%91%EB%AA%B0.png" width="800"/>
+<br><br>
+장바구니<br><br>
+<img src="https://github.com/DynamicRD/JSP__STUDY/blob/dev/%EC%9E%A5%EB%B0%94%EA%B5%AC%EB%8B%88.png" width="800"/>
+<br><br>
+회원가입<br><br>
+<img src="https://github.com/DynamicRD/JSP__STUDY/blob/dev/%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85.png" width="800"/>
+<br><br>
+고객페이지<br><br>
+<img src="https://github.com/DynamicRD/JSP__STUDY/blob/dev/%EA%B3%A0%EA%B0%9D%ED%8E%98%EC%9D%B4%EC%A7%80.png" width="800"/>
+
+### 🎞 시연영상
+[https://www.youtube.com/watch?v=ZchorLpgqUY](https://www.youtube.com/watch?v=ZchorLpgqUY)
